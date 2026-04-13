@@ -39,7 +39,7 @@ public class UserRepository {
     public void saveUser(User user) {
         String sql = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
 
-        jdbcTemplate.update(sql, user.getUserName(), user.getPassword(), user.getEmail());
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getEmail());
 
 
     }

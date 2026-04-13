@@ -4,13 +4,13 @@ import java.util.List;
 
 public class User {
     private int id;
-    private String userName;
+    private String username;
     private String password;
     private String email;
 
     public User (int id, String name, String password, String email){
         this.id = id;
-        this.userName = name;
+        this.username = name;
         this.password = password;
         this.email = email;
     }
@@ -22,8 +22,8 @@ public class User {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword(){
@@ -40,7 +40,7 @@ public class User {
     }
 
     public void setUserName(String name) {
-        this.userName = name;
+        this.username = name;
     }
 
     public void setPassword(String password) {
