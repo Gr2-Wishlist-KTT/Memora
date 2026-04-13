@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("memora")
 public class NavController {
 
+    @GetMapping()
+    public String frontPage() {
+        return "frontpage";
+    }
+
     @GetMapping("/about")
     public String aboutUs() {
         return "about";
