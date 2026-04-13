@@ -17,10 +17,15 @@ public class UserController {
         this.service = service;
     }
 
+// CHECK LOGIN (for at kunne komme videre til næste side)
     @GetMapping("/{email}")
     public String UserLogin(@PathVariable String email, Model model){
         User user = service.findUserById(email);
         model.addAttribute("user", user);
         return "user";
     }
+
+    // REGISTER USER
+    @GetMapping("/add")
+    public String registerUser
 }
