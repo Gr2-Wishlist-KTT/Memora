@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("memora")
+@RequestMapping("/memora")
 public class UserController {
 
     private final UserService service;
@@ -27,14 +27,13 @@ public class UserController {
     // REGISTER USER
     @GetMapping("/add")
     public String registerUser(Model model){
-        User user = new User();
-        model.addAttribute("user", user);
-        return "registernewuser";
+        model.addAttribute("user", new User());
+        return "register";
     }
 
     @PostMapping("/save")
     public String saveUser(@ModelAttribute User user){
         service.saveUser(user);
-        return "redirect:/user";
+        return "redirect:/memora/success";
     }
 }

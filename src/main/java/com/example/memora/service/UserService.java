@@ -15,7 +15,7 @@ public class UserService {
     }
 
     public User findUserById(String email){
-        return repository.findUserById(email);
+        return repository.findUserByEmail(email);
     }
 
     @Transactional

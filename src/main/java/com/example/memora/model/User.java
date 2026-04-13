@@ -8,15 +8,16 @@ public class User {
     private String password;
     private String email;
 
-    public User (int id, String name, String password, String email){
+    public User(){
+    }
+
+    public User(int id, String username, String password, String email){
         this.id = id;
-        this.username = name;
+        this.username = username;
         this.password = password;
         this.email = email;
     }
 
-   public User(){
-   }
 // GETTER METHODS
     public int getId() {
         return id;
@@ -39,8 +40,8 @@ public class User {
         this.id = id;
     }
 
-    public void setUserName(String name) {
-        this.username = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
