@@ -3,9 +3,10 @@ package com.example.memora.repository;
 import com.example.memora.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -24,11 +25,16 @@ public class UserRepository {
         return user;
     };
 
-    public List<User> getUsers(){
+    public User findUserById(String email){
         String sql = """
-                """
+                SELECT id, username, password, email
+                FROM user
+                WHERE email = ?
+                """;
 
+        return jdbcTemplate.queryForObject(sql, rowMapper, email);
     }
+
 
 
 }
