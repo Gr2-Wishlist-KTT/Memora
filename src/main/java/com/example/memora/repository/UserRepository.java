@@ -24,11 +24,11 @@ public class UserRepository {
         return user;
     };
 
-    public List<User> getUsers(){
-        String sql = """
-                """
-
-    }
+//    public List<User> getUsers(){
+//        String sql = """
+//                """
+//
+//    }
 
 
 }
