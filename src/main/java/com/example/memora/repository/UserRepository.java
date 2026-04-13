@@ -4,6 +4,8 @@ import com.example.memora.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.util.List;
+
 public class UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -22,6 +24,11 @@ public class UserRepository {
         return user;
     };
 
+    public List<User> getUsers(){
+        String sql = """
+                """
+
+    }
 
 
 }
