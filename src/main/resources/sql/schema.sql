@@ -1,4 +1,6 @@
+drop database if exists memora;
 create database memora;
+use memora;
 
 create table User(
                      id int auto_increment,

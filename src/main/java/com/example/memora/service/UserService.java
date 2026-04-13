@@ -3,6 +3,7 @@ package com.example.memora.service;
 import com.example.memora.model.User;
 import com.example.memora.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -17,4 +18,8 @@ public class UserService {
         return repository.findUserById(email);
     }
 
+    @Transactional
+    public void saveUser(User user){
+        repository.saveUser(user);
+    }
 }
