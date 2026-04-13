@@ -12,13 +12,13 @@ public class UserController {
 
     private final UserService service;
 
-    public UserController (UserService service){
+    public UserController(UserService service) {
         this.service = service;
     }
 
-// CHECK LOGIN (for at kunne komme videre til næste side)
+    // CHECK LOGIN (for at kunne komme videre til næste side)
     @GetMapping("/{email}")
-    public String UserLogin(@PathVariable String email, Model model){
+    public String UserLogin(@PathVariable String email, Model model) {
         User user = service.findUserById(email);
         model.addAttribute("user", user);
         return "user";
@@ -26,13 +26,13 @@ public class UserController {
 
     // REGISTER USER
     @GetMapping("/add")
-    public String registerUser(Model model){
+    public String registerUser(Model model) {
         model.addAttribute("user", new User());
-        return "register";
+        return "login/register";
     }
 
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user) {
         service.saveUser(user);
         return "redirect:/memora/success";
     }
