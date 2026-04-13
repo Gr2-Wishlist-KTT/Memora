@@ -7,6 +7,7 @@ public class Wishes {
     private int quantity;
     private double price;
 
+    // KONTRUKTØR
     public Wishes(String id, String productName, String description, int quantity, double price) {
         this.id = id;
         this.productName = productName;
@@ -15,6 +16,7 @@ public class Wishes {
         this.price = price;
     }
 
+    // GETTER'S & SETTER'S
     public String getId() {
         return id;
     }
