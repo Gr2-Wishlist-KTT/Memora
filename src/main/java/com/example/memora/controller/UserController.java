@@ -18,12 +18,12 @@ public class UserController {
     }
 
     // CHECK LOGIN (for at kunne komme videre til næste side)
-    @GetMapping("/{email}")
-    public String UserLogin(@PathVariable String email, Model model) {
-        User user = service.findUserByEmail(email);
-        model.addAttribute("user", user);
-        return "user";
-    }
+//    @GetMapping("/{email}")
+//    public String UserLogin(@PathVariable String email, Model model) {
+//        User user = service.findUserByEmail(email);
+//        model.addAttribute("user", user);
+//        return "user";
+//    }
 
     // REGISTER USER
     @GetMapping("/add")
@@ -43,26 +43,26 @@ public class UserController {
 
 
     @GetMapping("login")
-    public String showLogin (){
+    public String showLogin() {
         return "login/userLogin";
     }
 
     @PostMapping("/login")
     public String login(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session, Model model) {
-       if (service.login(email, password)){
+        if (service.login(email, password)) {
 
         session.setAttribute("user", service.findUserByEmail(email));
-       return "redirect:/memora";}
+       return "redirect:/memora/wishlists";}
 
-       // WRONG INPUT
-       model.addAttribute("wrongCredentials", true);
-       return "login/userLogin";
+        // WRONG INPUT
+        model.addAttribute("wrongCredentials", true);
+        return "login/userLogin";
     }
 
 
 
     @GetMapping("logout")
-    public String logout (HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "xxxxxxxxxxxxx";
     }

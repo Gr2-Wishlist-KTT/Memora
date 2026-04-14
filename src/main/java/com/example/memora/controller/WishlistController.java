@@ -1,6 +1,8 @@
 package com.example.memora.controller;
 
+import com.example.memora.model.User;
 import com.example.memora.service.WishlistService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +18,10 @@ public class WishlistController {
         this.wishlistService = wishlistService;
     }
 
-    @GetMapping("/wishlists/{owner}")
-    public String getWishlists(Model model,@PathVariable int owner) {
-        model.addAttribute("wishlists", wishlistService.getWishlists(owner));
+    @GetMapping("/wishlists")
+    public String getWishlists(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("wishlists", wishlistService.getWishlists(user.getId()));
         return "showWishlists";
     }
 }
