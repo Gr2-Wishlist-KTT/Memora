@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!--@thymesvar id="user" type="com.example.memora.model.User"-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Register User</h1>
+
+<form th:action="@{/memora/login}" method="post">
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="password">Adgangskode:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button type="submit">Login</button>
+
+</form>
+
+<!-- Fejlbesked -->
+<p th:if="${wrongCredentials}" style="color:red;">
+    Forkert email eller adgangskode
+</p>
+
+</body>
+</html>
