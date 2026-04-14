@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Tilføj ønske</h1>
+
+<form th:action="@{/memora/{wishlistID}/saveWish(wishlistID=${wishlistID})}" th:object="${wish}" method="post">
+
+    <label for="name">Name:</label>
+    <input type="text" th:field="*{productName}" id="name" required>
+
+    <label for="description">Description:</label>
+    <textarea th:field="*{description}" id="description" rows="10"></textarea>
+
+    <button type="submit">Tilføj ønske</button>
+</form>
+
+<a th:href="@{/memora/{wishlistID}(wishlistID=${wishlistID})}">Cancel</a>
+
+
+</body>
+</html>

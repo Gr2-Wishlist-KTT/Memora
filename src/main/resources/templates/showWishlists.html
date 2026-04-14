@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+<tr th:each="wishlist : ${wishlists}">
+    <td>
+    <a th:href="@{/memora/{wishlistID}(wishlistID=${wishlist.id})}">
+    <p th:text="${wishlist.title}"></p>
+    </a>
+    </td>
+</tr>
+</table>
+</body>
+</html>

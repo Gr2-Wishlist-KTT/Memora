@@ -10,7 +10,7 @@ public class UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository (JdbcTemplate jdbcTemplate){
+    public UserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -40,6 +40,4 @@ public class UserRepository {
         jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getEmail());
 
     }
-
-
 }
