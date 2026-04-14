@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/memora")
+@RequestMapping("/wishlists/{wishlistId}/wishes")
 public class WishController {
     private final WishService wishService;
 
@@ -15,22 +15,16 @@ public class WishController {
         this.wishService = wishService;
     }
 
-    @GetMapping("/{wishlistID}")
-    public String getWishes(Model model, @PathVariable int wishlistID){
-        model.addAttribute("wishes", wishService.getWishes(wishlistID));
-        return "wishlist";
-    }
-
-    @GetMapping("/{wishlistID}/newWish")
-    public String addNewWish(Model model,@PathVariable int wishlistID){
+    @GetMapping("/new")
+    public String newWish(@PathVariable int wishlistId, Model model) {
         model.addAttribute("wish", new Wish());
-        model.addAttribute("wishlistID", wishlistID);
-        return "addNewWish";
+        model.addAttribute("wishlistID", wishlistId);
+        return "wish/addNewWish";
     }
 
-    @PostMapping("/{wishlistID}/saveWish")
-    public String saveWish(@ModelAttribute Wish wish, @PathVariable int wishlistID){
-        wishService.saveWishes(wish, wishlistID);
-        return "redirect:/memora/" + wishlistID;
+    @PostMapping
+    public String saveWish(@ModelAttribute Wish wish, @PathVariable int wishlistId) {
+        wishService.saveWishes(wish, wishlistId);
+        return "redirect:/wishlists/" + wishlistId;
     }
 }

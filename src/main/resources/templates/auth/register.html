@@ -9,7 +9,7 @@
 <h1>Register User</h1>
 
 
-<form th:action="@{/memora/save}" th:object="${user}" method="post">
+<form th:action="@{/auth/register}" th:object="${user}" method="post">
 
     <label for="username">Brugernavn:</label><br>
     <input type="text"
@@ -31,7 +31,7 @@
 </form>
 <br>
 
-<button type="button" onclick="window.location.href='/memora'">
+<button type="button" onclick="window.location.href='/'">
     Cancel </button>
 </body>
 </html>

@@ -8,8 +8,8 @@
 <table>
 <tr th:each="wishlist : ${wishlists}">
     <td>
-    <a th:href="@{/memora/{wishlistID}(wishlistID=${wishlist.id})}">
-    <p th:text="${wishlist.title}"></p>
+        <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+        <p th:text="${wishlist.title}"></p>
     </a>
     </td>
 </tr>

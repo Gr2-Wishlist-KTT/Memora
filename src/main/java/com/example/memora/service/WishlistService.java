@@ -1,30 +1,34 @@
 package com.example.memora.service;
 
 
-import com.example.memora.model.WishList;
-import com.example.memora.repository.WishListRepository;
+import com.example.memora.model.Wishlist;
+import com.example.memora.repository.WishlistRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class WishlistService {
-    private final WishListRepository repository;
+    private final WishlistRepository repository;
 
-    public WishlistService(WishListRepository repository) {
+    public WishlistService(WishlistRepository repository) {
         this.repository = repository;
     }
 
-    public List<WishList> getWishlists(int owner) {
+    public Wishlist getWishlist(int wishlistID) {
+        return repository.getWishList(wishlistID);
+    }
+
+    public List<Wishlist> getWishlists(int owner) {
         return repository.getWishLists(owner);
     }
 
-    public int createWishlist(String title, int ownerId) {
-        return repository.createWishlist(title, ownerId);
+    public void saveWishlist(Wishlist wishlist, int ownerId) {
+        repository.createWishlist(wishlist, ownerId);
     }
 
-    public void updateWishlist(int id, String title) {
-        repository.updateWishlist(id, title);
+    public void updateWishlist(int id, Wishlist wishlist) {
+        repository.updateWishlist(id, wishlist);
     }
 }
 

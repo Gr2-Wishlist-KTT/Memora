@@ -7,7 +7,7 @@
 <body>
 <h1>Tilføj ønske</h1>
 
-<form th:action="@{/memora/{wishlistID}/saveWish(wishlistID=${wishlistID})}" th:object="${wish}" method="post">
+<form th:action="@{/wishlists/{wishlistID}/wishes(wishlistID=${wishlistID})}" th:object="${wish}" method="post">
 
     <label for="name">Name:</label>
     <input type="text" th:field="*{productName}" id="name" required>

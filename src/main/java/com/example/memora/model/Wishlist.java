@@ -1,6 +1,6 @@
 package com.example.memora.model;
 
-public class WishList {
+public class Wishlist {
     private int id;
     private int owner;
     private String title;
@@ -8,10 +8,10 @@ public class WishList {
 
     // KONTRUKTØR
 
-    public WishList() {
+    public Wishlist() {
     }
 
-    public WishList(int id, int owner, String title) {
+    public Wishlist(int id, int owner, String title) {
         this.id = id;
         this.owner = owner;
         this.title = title;
