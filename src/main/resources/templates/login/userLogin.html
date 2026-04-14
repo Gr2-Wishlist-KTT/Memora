@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Register User</h1>
+<h1>Login Memora</h1>
 
 <form th:action="@{/memora/login}" method="post">
 
@@ -19,7 +19,15 @@
     <button type="submit">Login</button>
 
 </form>
+<br>
+<button type="button" onclick="window.location.href='/memora/add'">
+    Opret ny Bruger </button>
 
+<button type="button" onclick="window.location.href='/memora/add'">
+    Glemt adgangskode </button>
+
+<button type="button" onclick="window.location.href='/memora'">
+    Cancel </button>
 <!-- Fejlbesked -->
 <p th:if="${wrongCredentials}" style="color:red;">
     Forkert email eller adgangskode

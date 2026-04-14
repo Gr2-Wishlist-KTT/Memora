@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping("/save")
     public String saveUser(@ModelAttribute User user) {
         service.saveUser(user);
-        return "redirect:/memora/success";
+        return "redirect:/memora";
     }
 
 
