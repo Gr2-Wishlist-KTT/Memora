@@ -10,12 +10,17 @@ import java.util.List;
 public class WishService {
     private final WishRepository repository;
 
-    public WishService(WishRepository repository) {
-        this.repository = repository;
-    }
+    public WishService(WishRepository repository) {this.repository = repository;}
 
-    public List<Wishes> getWishes (int id) {
-        return repository.getWishes(id);
-    }
+    public List<Wishes> getWishes (int id) {return repository.getWishes(id);}
+
+    public void updateWish(Wishes wish) {repository.updateWish(wish);}
+
+    public void removeWish(int wishId) {repository.removeWish(wishId);}
+
+    public int saveWishes(Wishes wishes, int wishlistId) {return repository.saveWishes(wishes, wishlistId);}
+
+
+
 
 }
