@@ -51,7 +51,7 @@ public class UserController {
     public String login(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session, Model model) {
        if (service.login(email, password)){
 
-        session.setAttribute("user", new User ());
+        session.setAttribute("user", service.findUserByEmail(email));
        return "redirect:/memora";}
 
        // WRONG INPUT
