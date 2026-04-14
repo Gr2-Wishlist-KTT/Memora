@@ -1,7 +1,6 @@
 package com.example.memora.repository;
 
 import com.example.memora.model.WishList;
-import com.example.memora.model.Wishes;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -49,13 +48,13 @@ public class WishListRepository {
 
 
     // Metode for at kunne retunere ønsker
-    public List<WishList> getWishList(int id) {
+    public List<WishList> getWishLists(int owner) {
         String sql = """
                 SELECT Wishlist.id, Wishlist.title, Wishlist.owner
-                FROM Wish
-                WHERE Wishlist.id = ?;
+                FROM Wishlist
+                WHERE Wishlist.owner = ?;
                 """;
-        return jdbcTemplate.query(sql, rowMapper, id);
+        return jdbcTemplate.query(sql, rowMapper, owner);
 
     }
     public void updateWishlist(int id, String title) {

@@ -8,7 +8,8 @@ public class WishList {
 
     // KONTRUKTØR
 
-    public WishList () {}
+    public WishList() {
+    }
 
     public WishList(int id, int owner, String title) {
         this.id = id;

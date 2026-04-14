@@ -1,6 +1,6 @@
 package com.example.memora.model;
 
-public class Wishes {
+public class Wish {
     private int id;
     private String productName;
     private String description;
@@ -10,9 +10,10 @@ public class Wishes {
 
     // KONTRUKTØR
 
-    public Wishes() {}
+    public Wish() {
+    }
 
-    public Wishes(int id, String productName, String description, int quantity, double price, String linkToProduct) {
+    public Wish(int id, String productName, String description, int quantity, double price, String linkToProduct) {
         this.id = id;
         this.productName = productName;
         this.description = description;

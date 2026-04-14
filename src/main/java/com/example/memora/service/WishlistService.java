@@ -11,13 +11,20 @@ import java.util.List;
 public class WishlistService {
     private final WishListRepository repository;
 
-    public WishlistService(WishListRepository repository) {this.repository = repository;}
+    public WishlistService(WishListRepository repository) {
+        this.repository = repository;
+    }
 
-    public List<WishList> getWishlist (int id) {return repository.getWishList(id);}
+    public List<WishList> getWishlists(int owner) {
+        return repository.getWishLists(owner);
+    }
 
+    public int createWishlist(String title, int ownerId) {
+        return repository.createWishlist(title, ownerId);
+    }
 
-    public int createWishlist(String title, int ownerId) {return repository.createWishlist(title, ownerId);}
-
-    public void updateWishlist(int id, String title) {repository.updateWishlist(id, title);}
+    public void updateWishlist(int id, String title) {
+        repository.updateWishlist(id, title);
+    }
 }
 

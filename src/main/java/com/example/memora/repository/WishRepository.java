@@ -1,7 +1,6 @@
 package com.example.memora.repository;
 
-import com.example.memora.model.WishList;
-import com.example.memora.model.Wishes;
+import com.example.memora.model.Wish;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -20,21 +19,21 @@ public class WishRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private final RowMapper<Wishes> rowMapper = (rs, rowNum) -> {
-        Wishes wishes = new Wishes();
-        wishes.setProductName(rs.getString("product_name"));
-        wishes.setId(rs.getInt("id"));
-        wishes.setPrice(rs.getDouble("price"));
-        wishes.setDescription(rs.getString("description"));
-        wishes.setLinkToProduct(rs.getString("link"));
-        wishes.setQuantity(rs.getInt("quantity"));
+    private final RowMapper<Wish> rowMapper = (rs, rowNum) -> {
+        Wish wish = new Wish();
+        wish.setProductName(rs.getString("product_name"));
+        wish.setId(rs.getInt("id"));
+        wish.setPrice(rs.getDouble("price"));
+        wish.setDescription(rs.getString("description"));
+        wish.setLinkToProduct(rs.getString("link"));
+        wish.setQuantity(rs.getInt("quantity"));
 
-        return wishes;
+        return wish;
     };
 
 
     // Metode for at kunne retunere ønsker
-    public List<Wishes> getWishes(int id) {
+    public List<Wish> getWishes(int id) {
         String sql = """
                 SELECT Wish.id, Wish.product_name, Wish.link, Wish.description, Wish.quantity, Wish.price
                 FROM Wish
@@ -44,19 +43,19 @@ public class WishRepository {
     }
 
     // Metode for at kunne tilføje ønsker
-    public int saveWishes(Wishes wishes, int wishlistId) {
+    public int saveWishes(Wish wish, int wishlistId) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String sql = "INSERT INTO Wish (product_name, description, wishlist_id, link, price, quantity) VALUES (?,?,?,?,?,?)";
 
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, wishes.getProductName());
-            ps.setString(2, wishes.getDescription());
+            ps.setString(1, wish.getProductName());
+            ps.setString(2, wish.getDescription());
             ps.setInt(3, wishlistId);
-            ps.setString(4, wishes.getLinkToProduct());
-            ps.setDouble(5, wishes.getPrice());
-            ps.setInt(6, wishes.getQuantity());
+            ps.setString(4, wish.getLinkToProduct());
+            ps.setDouble(5, wish.getPrice());
+            ps.setInt(6, wish.getQuantity());
             return ps;
         }, keyHolder);
         return keyHolder.getKey().intValue();
@@ -67,7 +66,7 @@ public class WishRepository {
         jdbcTemplate.update(sql, wishId);
     }
 
-    public void updateWish(Wishes wish) {
+    public void updateWish(Wish wish) {
         String sql = """
                     UPDATE Wish
                     SET product_name = ?,
