@@ -3,9 +3,9 @@ package com.example.memora.repository;
 import com.example.memora.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+@Repository
 public class UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -17,16 +17,27 @@ public class UserRepository {
     private final RowMapper<User> rowMapper = (rs, rowNum) -> {
         User user = new User();
         user.setId(rs.getInt("id"));
-        user.setName(rs.getString("name"));
+        user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
         user.setEmail(rs.getString("email"));
 
         return user;
     };
 
-    public List<User> getUsers() {
+    public User findUserByEmail(String email){
         String sql = """
+                SELECT id, username, password, email
+                FROM user
+                WHERE email = ?
                 """;
-        return getUsers();
+
+        return jdbcTemplate.queryForObject(sql, rowMapper, email);
+    }
+
+    public void saveUser(User user) {
+        String sql = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
+
+        jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getEmail());
+
     }
 }
