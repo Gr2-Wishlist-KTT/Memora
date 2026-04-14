@@ -10,7 +10,7 @@ public class UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository (JdbcTemplate jdbcTemplate){
+    public UserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -24,11 +24,9 @@ public class UserRepository {
         return user;
     };
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         String sql = """
-                """
-
+                """;
+        return getUsers();
     }
-
-
 }

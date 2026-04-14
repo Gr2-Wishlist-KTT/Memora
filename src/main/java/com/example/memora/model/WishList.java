@@ -2,12 +2,15 @@ package com.example.memora.model;
 
 public class WishList {
     private int id;
-    private String owner;
+    private int owner;
     private String title;
 
 
     // KONTRUKTØR
-    public WishList(int id, String owner, String title) {
+
+    public WishList () {}
+
+    public WishList(int id, int owner, String title) {
         this.id = id;
         this.owner = owner;
         this.title = title;
@@ -22,11 +25,11 @@ public class WishList {
         this.id = id;
     }
 
-    public String getOwner() {
+    public int getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
 

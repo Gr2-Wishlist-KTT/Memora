@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f1ea;
+    text-align: center;
+    padding: 20px;
+    background: blue;
+}
+
+/* Liste container */
+.liste {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* "Revet papir" effekt */
+.papir {
+    background: #fff;
+    padding: 15px;
+    margin: 15px 0;
+    font-size: 18px;
+
+    /* lidt skygge */
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+
+    /* gør kanterne ujævne */
+    clip-path: polygon(
+            0% 5%, 5% 0%, 95% 0%, 100% 5%,
+            100% 95%, 95% 100%, 5% 100%, 0% 95%
+    );
+}
+
+/* Rund + knap */
+.plus-knap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 70px;
+    height: 70px;
+    font-size: 40px;
+
+    background-color: #4CAF50;
+    color: white;
+
+    border-radius: 50%;
+    text-decoration: none;
+
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.plus-knap:hover {
+    background-color: #45a049;
+}
+.tilfoej-knap {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}

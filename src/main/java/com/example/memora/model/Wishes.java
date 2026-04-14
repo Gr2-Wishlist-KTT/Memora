@@ -1,27 +1,33 @@
 package com.example.memora.model;
 
 public class Wishes {
-    private String id;
+    private int id;
     private String productName;
     private String description;
     private int quantity;
     private double price;
+    private String linkToProduct;
 
     // KONTRUKTØR
-    public Wishes(String id, String productName, String description, int quantity, double price) {
+
+    public Wishes() {}
+
+    public Wishes(int id, String productName, String description, int quantity, double price, String linkToProduct) {
         this.id = id;
         this.productName = productName;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
+        this.linkToProduct = linkToProduct;
     }
 
+
     // GETTER'S & SETTER'S
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -55,5 +61,13 @@ public class Wishes {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getLinkToProduct() {
+        return linkToProduct;
+    }
+
+    public void setLinkToProduct(String linkToProduct) {
+        this.linkToProduct = linkToProduct;
     }
 }
