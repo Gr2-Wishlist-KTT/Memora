@@ -23,33 +23,34 @@ class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    void findByEmail() {
+    void findUserByEmail() {
         User user = userRepository.findUserByEmail("anna@test.com");
 
         assertThat(user).isNotNull();
         assertThat(user.getEmail()).isEqualTo("anna@test.com");
         assertThat(user.getId()).isEqualTo(1);
         assertThat(user.getUsername()).isEqualTo("anna");
-        assertThat(user.getPassword()).isEqualTo("anna123");
-    }
-
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
-    @Test
-    void findUserByEmail() {
+        assertThat(user.getPassword()).isEqualTo("anna_123");
     }
 
     @Test
     void saveUser() {
-    }
+        User user = new User(
+                3,
+                "Lasse",
+                "Lasse_123",
+                "LasseSej@mail.com"
+        );
 
+        userRepository.saveUser(user);
+
+        User saved = userRepository.findUserByEmail("LasseSej@mail.com");
+
+        assertThat(user.getEmail()).isEqualTo("LasseSej@mail.com");
+        assertThat(user.getUsername()).isEqualTo("Lasse");
+        assertThat(user.getPassword()).isEqualTo("Lasse_123");
+        assertThat(user.getId()).isEqualTo(saved.getId());
+    }
 
 
 }

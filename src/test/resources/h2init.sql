@@ -1,6 +1,6 @@
 drop table if exists Profile;
-drop table if exists wishlist;
-drop table if exists wish;
+drop table if exists Wishlist;
+drop table if exists Wish;
 
 
 create table Profile(
@@ -11,7 +11,7 @@ create table Profile(
                      primary key (id)
 );
 
-create table wishlist(
+create table Wishlist(
                          id int auto_increment,
                          title varchar(100) not null,
                          owner int not null,
@@ -19,7 +19,7 @@ create table wishlist(
                          foreign key (owner) references Profile (id) on delete cascade
 );
 
-create table wish(
+create table Wish(
                      id int auto_increment,
                      product_name varchar(100) not null,
                      link varchar(2048),

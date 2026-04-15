@@ -21,4 +21,5 @@ class WishlistRepositoryTest {
     @Test
     void updateWishlist() {
     }
+
 }
