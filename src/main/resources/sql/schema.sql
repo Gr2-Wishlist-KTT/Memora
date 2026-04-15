@@ -2,7 +2,7 @@ drop database if exists memora;
 create database memora;
 use memora;
 
-create table User(
+create table Profile(
                      id int auto_increment,
                      username varchar(50) not null,
                      password varchar(100) not null,
@@ -15,7 +15,7 @@ create table Wishlist(
                          title varchar(100) not null,
                          owner int not null,
                          primary key (id),
-                         foreign key (owner) references User (id) on delete cascade
+                         foreign key (owner) references Profile (id) on delete cascade
 );
 
 create table Wish(

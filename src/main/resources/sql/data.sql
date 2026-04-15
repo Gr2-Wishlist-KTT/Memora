@@ -1,6 +1,6 @@
 use memora;
 
-INSERT INTO User (username, password, email) VALUES
+INSERT INTO Profile (username, password, email) VALUES
                                                  ('anna', 'hashed_pw_anna', 'anna@example.com'),
                                                  ('mads', 'hashed_pw_mads', 'mads@example.com');
 

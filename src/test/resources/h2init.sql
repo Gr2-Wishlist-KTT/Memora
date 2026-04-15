@@ -1,9 +1,9 @@
-drop table if exists User;
-drop table if exists Wishlist;
-drop table if exists Wish;
+drop table if exists Profile;
+drop table if exists wishlist;
+drop table if exists wish;
 
 
-create table User(
+create table Profile(
                      id int auto_increment,
                      username varchar(50) not null,
                      password varchar(100) not null,
@@ -11,15 +11,15 @@ create table User(
                      primary key (id)
 );
 
-create table Wishlist(
+create table wishlist(
                          id int auto_increment,
                          title varchar(100) not null,
                          owner int not null,
                          primary key (id),
-                         foreign key (owner) references User (id) on delete cascade
+                         foreign key (owner) references Profile (id) on delete cascade
 );
 
-create table Wish(
+create table wish(
                      id int auto_increment,
                      product_name varchar(100) not null,
                      link varchar(2048),
@@ -32,7 +32,7 @@ create table Wish(
 );
 
 
-INSERT INTO User (username, password, email) VALUES
+INSERT INTO Profile (username, password, email) VALUES
                                                  ('anna', 'anna_123', 'anna@test.com'),
                                                  ('mads', 'mads_321', 'mads@test.com');
 
