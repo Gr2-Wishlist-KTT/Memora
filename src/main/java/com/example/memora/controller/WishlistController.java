@@ -1,7 +1,9 @@
 package com.example.memora.controller;
 
+import com.example.memora.model.SharedWishlist;
 import com.example.memora.model.User;
 import com.example.memora.model.Wishlist;
+import com.example.memora.service.SharedWishlistService;
 import com.example.memora.service.WishService;
 import com.example.memora.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class WishlistController {
     private final WishlistService wishlistService;
     private final WishService wishService;
+    private final SharedWishlistService sharedWishlistService;
 
-    public WishlistController(WishlistService wishlistService, WishService wishService) {
+    public WishlistController(WishlistService wishlistService, WishService wishService, SharedWishlistService sharedWishlistService) {
         this.wishlistService = wishlistService;
         this.wishService = wishService;
+        this.sharedWishlistService = sharedWishlistService;
     }
 
     @GetMapping
@@ -27,7 +31,8 @@ public class WishlistController {
             return "redirect:/";
         }
 
-        model.addAttribute("wishlists", wishlistService.getWishlists(user.getId()));
+        model.addAttribute("myWishlists", wishlistService.getWishlists(user.getId()));
+        model.addAttribute("sharedWishlists", sharedWishlistService.getWishlistsSharedWithUser(user.getId()));
         return "wishlist/myWishlists";
     }
 

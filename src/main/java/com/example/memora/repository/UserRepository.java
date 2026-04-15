@@ -27,7 +27,7 @@ public class UserRepository {
     public User findUserByEmail(String email){
         String sql = """
                 SELECT id, username, password, email
-                FROM user
+                FROM profile
                 WHERE email = ?
                 """;
 
@@ -35,7 +35,7 @@ public class UserRepository {
     }
 
     public void saveUser(User user) {
-        String sql = "INSERT INTO user (username, password, email) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO profile (username, password, email) VALUES (?, ?, ?)";
 
         jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getEmail());
 

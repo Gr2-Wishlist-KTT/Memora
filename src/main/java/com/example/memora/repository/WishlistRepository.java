@@ -53,7 +53,7 @@ public class WishlistRepository {
         String sql = """
                 SELECT Wishlist.id, Wishlist.title, Wishlist.owner
                 FROM Wishlist
-                WHERE Wishlist.owner = ?;
+                WHERE Wishlist.id = ?;
                 """;
         return jdbcTemplate.queryForObject(sql, rowMapper, wishlistID);
     }

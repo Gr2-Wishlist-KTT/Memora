@@ -6,13 +6,27 @@
 </head>
 <body>
 <table>
-<tr th:each="wishlist : ${wishlists}">
-    <td>
-        <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
-        <p th:text="${wishlist.title}"></p>
-    </a>
-    </td>
-</tr>
+    <tr>
+        <th>Mine ønskesedler</th>
+    </tr>
+    <tr th:each="wishlist : ${myWishlists}">
+        <td>
+            <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+                <p th:text="${wishlist.title}"></p>
+            </a>
+        </td>
+    </tr>
+
+    <tr>
+        <th>Ønskesedler delt med mig</th>
+    </tr>
+    <tr th:each="wishlist : ${sharedWishlists}">
+        <td>
+            <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+                <p th:text="${wishlist.title}"></p>
+            </a>
+        </td>
+    </tr>
 </table>
 </body>
 </html>
