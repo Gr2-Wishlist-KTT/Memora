@@ -38,6 +38,7 @@ public class WishlistRepository {
     }
 
 
+
     // Metode for at kunne retunere ønsker
     public List<Wishlist> getWishLists(int owner) {
         String sql = """
@@ -53,7 +54,7 @@ public class WishlistRepository {
         String sql = """
                 SELECT Wishlist.id, Wishlist.title, Wishlist.owner
                 FROM Wishlist
-                WHERE Wishlist.owner = ?;
+                WHERE id = ?;
                 """;
         return jdbcTemplate.queryForObject(sql, rowMapper, wishlistID);
     }
