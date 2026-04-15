@@ -1,25 +1,64 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Ønskeliste</title>
-    <link rel="stylesheet" th:href="@{/stylesheet.css}"></head>
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
+</head>
+
 <body>
 
-<h1>Min ønskeliste</h1>
+<header class="topbar">
 
-<div class="liste">
-    <div class="papir">
-        <button class="tilfoej-knap">Tilføj ønske</button>
+    <div>
+        <h1>Min ønskeliste</h1>
+        <p class="desc">Samlet oversigt over dine ønsker</p>
     </div>
-    <div th:each="wish : ${wishes}">
-        <a th:href="@{{link}(link=${wish.linkToProduct})}">
-            <p th:text="${wish.productName}"></p>
-        </a>
-    </div>
-</div>
 
-<a th:href="@{/memora/{wishlistID}/newWish(wishlistID=${wishlistID})}" class="plus-knap">+</a>
+    <a th:href="@{/memora/{wishlistID}/newWish(wishlistID=${wishlistID})}"
+       class="add-btn">
+        + Tilføj ønske
+    </a>
+
+</header>
+
+<main class="grid">
+
+    <section style="grid-column: 1 / -1;">
+        <div class="card">
+            <h2 style="margin: 0;">Dine ønsker</h2>
+            <p class="desc" style="margin-top: 6px;">
+                Klik på et ønske for at åbne linket eller se detaljer
+            </p>
+        </div>
+    </section>
+
+    <div class="card wish-card" th:each="wish : ${wishes}">
+
+        <div class="wish-content">
+
+            <h3 th:text="${wish.productName}"></h3>
+
+            <p class="desc"
+               th:text="${wish.description != null ? wish.description : 'Ingen beskrivelse'}">
+            </p>
+
+        </div>
+
+        <div class="wish-actions">
+
+            <a class="link"
+               th:if="${wish.linkToProduct != null}"
+               th:href="${wish.linkToProduct}"
+               target="_blank">
+                Åbn →
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
 
 </body>
 </html>

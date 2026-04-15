@@ -1,25 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Tilføj ønske</title>
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
 </head>
+
 <body>
-<h1>Tilføj ønske</h1>
 
-<form th:action="@{/memora/{wishlistID}/saveWish(wishlistID=${wishlistID})}" th:object="${wish}" method="post">
+<header class="page-header">
+    <div>
+        <h1>Tilføj ønske</h1>
+        <p class="page-header-subtitle">
+            Opret et nyt ønske til din liste
+        </p>
+    </div>
 
-    <label for="name">Name:</label>
-    <input type="text" th:field="*{productName}" id="name" required>
+    <a th:href="@{/memora/{wishlistID}(wishlistID=${wishlistID})}"
+       class="btn-primary">
+        ← Tilbage
+    </a>
+</header>
 
-    <label for="description">Description:</label>
-    <textarea th:field="*{description}" id="description" rows="10"></textarea>
+<main class="wishlist-container">
 
-    <button type="submit">Tilføj ønske</button>
-</form>
+    <div class="card form-card">
 
-<a th:href="@{/memora/{wishlistID}(wishlistID=${wishlistID})}">Cancel</a>
+        <form th:action="@{/memora/{wishlistID}/saveWish(wishlistID=${wishlistID})}"
+              th:object="${wish}"
+              method="post"
+              class="form">
 
+            <h3 style="margin: 0 0 12px 0;">Nyt ønske</h3>
+
+            <input type="text"
+                   placeholder="Navn på ønsket"
+                   th:field="*{productName}"
+                   required>
+
+            <textarea rows="4"
+                      placeholder="Beskrivelse (valgfrit)"
+                      th:field="*{description}">
+            </textarea>
+
+            <input type="text"
+                   placeholder="Link til produkt (valgfrit)"
+                   th:field="*{linkToProduct}">
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                    Gem ønske
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
 
 </body>
 </html>

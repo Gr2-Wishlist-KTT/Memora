@@ -1,63 +1,192 @@
+/* ========== GLOBAL FIX ========== */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f1ea;
-    text-align: center;
-    padding: 20px;
-    background: blue;
+    margin: 0;
+    background: #f6f7fb;
+    color: #222;
 }
 
-/* Liste container */
-.liste {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-/* "Revet papir" effekt */
-.papir {
-    background: #fff;
-    padding: 15px;
-    margin: 15px 0;
-    font-size: 18px;
-
-    /* lidt skygge */
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
-
-    /* gør kanterne ujævne */
-    clip-path: polygon(
-            0% 5%, 5% 0%, 95% 0%, 100% 5%,
-            100% 95%, 95% 100%, 5% 100%, 0% 95%
-    );
-}
-
-/* Rund + knap */
-.plus-knap {
+/* ========== TOP BAR ========== */
+.topbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
-    width: 70px;
-    height: 70px;
-    font-size: 40px;
+    padding: 20px 40px;
+    background: white;
+    border-bottom: 1px solid #eaeaea;
+}
 
-    background-color: #4CAF50;
+/* ========== BUTTON ========== */
+.add-btn {
+    background: #ff5a7a;
     color: white;
 
-    border-radius: 50%;
+    padding: 10px 16px;
+    border-radius: 8px;
+
     text-decoration: none;
-
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-weight: bold;
 }
 
-.plus-knap:hover {
-    background-color: #45a049;
+.add-btn:hover {
+    background: #e94e6d;
 }
-.tilfoej-knap {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
+
+/* ========== LAYOUT (WISHLIST PAGE) ========== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+
+    padding: 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* ========== CARD ========== */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* text inside cards */
+.card h3 {
+    margin: 0 0 8px 0;
+}
+
+.desc {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+/* link */
+.link {
+    color: #ff5a7a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* ========== FORM PAGE FIX ========== */
+.form-page .grid {
+    display: block;
+}
+
+/* ========== FORM CARD ========== */
+.form-card {
+    max-width: 500px;
+    width: 100%;
+
+    margin: 40px auto;
+}
+
+/* ========== FORM ========== */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 100%;
+}
+
+/* inputs */
+.form input,
+.form textarea {
+    width: 100%;
+    padding: 10px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-family: Arial;
+
+    transition: border 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* focus */
+.form input:focus,
+.form textarea:focus {
+    outline: none;
+    border-color: #ff5a7a;
+    box-shadow: 0 0 0 3px rgba(255, 90, 122, 0.12);
+}
+
+/* form actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+/* PAGE FEEL (IMPORTANT) */
+body {
+    background: #f6f7fb;
+}
+
+/* HEADER IMPROVEMENT */
+.topbar {
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+
+/* WISH CARD = REAL PRODUCT STYLE */
+.wish-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px;
+}
+
+/* LEFT SIDE */
+.wish-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* RIGHT SIDE */
+.wish-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* CARD TEXT HIERARCHY */
+h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* HOVER = IMPORTANT FOR "REAL APP FEEL" */
+.card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
 }
