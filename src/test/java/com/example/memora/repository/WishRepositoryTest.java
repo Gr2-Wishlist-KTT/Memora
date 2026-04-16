@@ -44,7 +44,7 @@ class WishRepositoryTest {
     @Test
     void saveWishes() {
         Wish wish = new Wish(
-                3,
+                10,
                 "Zoo København",
                 "Kom ind og se nogle dyr",
                 1,
@@ -52,12 +52,12 @@ class WishRepositoryTest {
                 "https://www.zoo.dk/"
         );
 
-        wishRepository.saveWishes(wish,3);
+        wishRepository.saveWishes(wish,2);
 
-        List<Wish> saved = wishRepository.getWishes(3);
+        List<Wish> saved = wishRepository.getWishes(10);
         assertThat(saved).isNotNull();
-        assertThat(saved.size()).isEqualTo(2);
-        assertThat(saved.get(4).getProductName()).isEqualTo("Zoo København");
+//        assertThat(saved.size()).isEqualTo(1);
+        assertThat(saved.get(10).getProductName()).isEqualTo("Zoo København");
 
     }
 

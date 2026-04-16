@@ -20,14 +20,17 @@
 
 </form>
 <br>
-<button type="button" onclick="window.location.href='/auth/register'">
-    Opret ny Bruger </button>
+<a th:href="@{/auth/register}">
+    <button type="button">Opret ny bruger</button>
+</a>
 
-<button type="button" onclick="window.location.href='/auth/register'">
-    Glemt adgangskode </button>
+<a th:href="@{/auth/forgot-password}">
+    <button type="button">Glemt adgangskode</button>
+</a>
 
-<button type="button" onclick="window.location.href='/'">
-    Cancel </button>
+<a th:href="@{/}">
+    <button type="button">Cancel</button>
+</a>
 <!-- Fejlbesked -->
 <p th:if="${wrongCredentials}" style="color:red;">
     Forkert email eller adgangskode
