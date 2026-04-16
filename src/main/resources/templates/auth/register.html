@@ -5,34 +5,45 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
+        <link rel="stylesheet" th:href="@{/login/login.css}">
+</head>
 <body>
-<h1>Register User</h1>
 
+<div class="login-container">
 
-<form th:action="@{/auth/register}" th:object="${user}" method="post">
+    <h1>Opret bruger</h1>
 
-    <label for="username">Brugernavn:</label><br>
-    <input type="text"
-           id="username"
-           th:field="*{username}"
-           required><br><br>
+    <form th:action="@{/auth/register}" th:object="${user}" method="post">
 
-    <label for="password">Adgangskode:</label><br>
-    <input type="password" id="password" th:field="*{password}" required><br><br>
+        <label for="username">Brugernavn</label>
+        <input type="text"
+               id="username"
+               th:field="*{username}"
+               required>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" th:field="*{email}" required><br><br>
+        <label for="password">Adgangskode</label>
+        <input type="password"
+               id="password"
+               th:field="*{password}"
+               required>
 
+        <label for="email">Email</label>
+        <input type="email"
+               id="email"
+               th:field="*{email}"
+               required>
 
-    <button type="submit">Opret bruger</button>
+        <button type="submit">Opret bruger</button>
 
+    </form>
 
+    <!-- Navigation -->
+    <a th:href="@{/auth/login}" class="secondary-btn full-width">
+        Tilbage til login
+    </a>
 
-</form>
-<br>
+</div>
 
-<a th:href="@{/auth/login}">
-    <button type="button">Cancel</button>
-</a>
 </body>
 </html>

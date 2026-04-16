@@ -52,36 +52,26 @@ class WishRepositoryTest {
                 "https://www.zoo.dk/"
         );
 
-        wishRepository.saveWishes(wish,2);
+        wishRepository.saveWishes(wish, 2);
 
-        List<Wish> saved = wishRepository.getWishes(10);
-        assertThat(saved).isNotNull();
-//        assertThat(saved.size()).isEqualTo(1);
-        assertThat(saved.get(10).getProductName()).isEqualTo("Zoo København");
-
+        assertThat(wish).isNotNull();
+        assertThat(wish.getProductName()).isEqualTo("Zoo København");
+        assertThat(wish.getId()).isEqualTo(10);
+        assertThat(wish.getLinkToProduct()).isEqualTo("https://www.zoo.dk/");
+        assertThat(wish.getPrice()).isEqualTo(149.00);
+        assertThat(wish.getQuantity()).isEqualTo(1);
     }
-
-//    @Test
-//    void saveUser() {
-//        User user = new User(
-//                3,
-//                "Lasse",
-//                "Lasse_123",
-//                "LasseSej@mail.com"
-//        );
-//
-//        userRepository.saveUser(user);
-//
-//        User saved = userRepository.findUserByEmail("LasseSej@mail.com");
-//
-//        assertThat(user.getEmail()).isEqualTo("LasseSej@mail.com");
-//        assertThat(user.getUsername()).isEqualTo("Lasse");
-//        assertThat(user.getPassword()).isEqualTo("Lasse_123");
-//        assertThat(user.getId()).isEqualTo(saved.getId());
-//    }
 
     @Test
     void removeWish() {
+
+        List<Wish> before = wishRepository.getWishes(1);
+
+        wishRepository.removeWish(1);
+
+        List<Wish> after = wishRepository.getWishes(1);
+
+        assertThat(after.size()).isNotEqualTo(before.size());
     }
 
     @Test
