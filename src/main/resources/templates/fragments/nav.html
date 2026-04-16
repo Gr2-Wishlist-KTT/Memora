@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
 <body>
-<nav th:fragment="navbar">
-    <a th:href="@{/}">Forside</a>
-    <a th:href="@{/about}">Om os</a>
-    <a th:href="@{/contact}">Kontakt</a>
+
+<nav th:fragment="navbar" class="navbar">
+    <div class="nav-left">
+        <a th:href="@{/}" class="logo">Memora</a>
+    </div>
+
+    <div class="nav-links">
+        <a th:href="@{/}">Forside</a>
+        <a th:href="@{/about}">Om os</a>
+        <a th:href="@{/contact}">Kontakt</a>
+    </div>
+
+    <div class="nav-right">
+        <a th:href="@{/auth/login}" class="login-btn">Login</a>
+    </div>
 </nav>
+
 </body>
 </html>
