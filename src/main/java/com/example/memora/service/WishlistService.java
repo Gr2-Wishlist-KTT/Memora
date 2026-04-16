@@ -32,6 +32,10 @@ public class WishlistService {
         repository.updateWishlist(id, wishlist);
     }
 
+    public void deleteWishlist(int id) {
+        repository.deleteWishlist(id);
+    }
+
     public boolean canEdit(User user, Wishlist wishlist){
         return user.getId() == wishlist.getOwner();
     }

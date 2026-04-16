@@ -61,21 +61,21 @@ public class WishlistController {
         return "wishlist/wishlist";
     }
 
-//    @GetMapping("/{wishlistID}/edit")
-//    public String editWishlist(@PathVariable int wishlistID, Model model) {
-//        model.addAttribute("wishlist", wishlistService.getWishlist(wishlistID));
-//        return "wishlist/editWishlist";
-//    }
-//
-//    @PostMapping("/{wishlistID}")
-//    public String updateWishlist(@ModelAttribute Wishlist wishlist, @PathVariable int wishlistID) {
-//        wishlistService.updateWishlist(wishlistID, wishlist);
-//        return "redirect:/wishlists";
-//    }
-//
-//    @PostMapping("/{wishlistID}/delete")
-//    public String deleteWishlist(@PathVariable int wishlistID) {
-//        wishlistService.deleteWishlist(wishlistID);
-//        return "redirect:/wishlists";
-//    }
+    @GetMapping("/{wishlistID}/edit")
+    public String editWishlist(@PathVariable int wishlistID, Model model) {
+        model.addAttribute("wishlist", wishlistService.getWishlist(wishlistID));
+        return "wishlist/editWishlist";
+    }
+
+    @PostMapping("/{wishlistID}")
+    public String updateWishlist(@ModelAttribute Wishlist wishlist, @PathVariable int wishlistID) {
+        wishlistService.updateWishlist(wishlistID, wishlist);
+        return "redirect:/wishlists";
+    }
+
+    @PostMapping("/{wishlistID}/delete")
+    public String deleteWishlist(@PathVariable int wishlistID) {
+        wishlistService.deleteWishlist(wishlistID);
+        return "redirect:/wishlists";
+    }
 }
