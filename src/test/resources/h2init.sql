@@ -1,8 +1,40 @@
-use memora;
+drop table if exists Profile;
+drop table if exists Wishlist;
+drop table if exists Wish;
+
+
+create table Profile(
+                     id int auto_increment,
+                     username varchar(50) not null,
+                     password varchar(100) not null,
+                     email varchar(254) not null unique,
+                     primary key (id)
+);
+
+create table Wishlist(
+                         id int auto_increment,
+                         title varchar(100) not null,
+                         owner int not null,
+                         primary key (id),
+                         foreign key (owner) references Profile (id) on delete cascade
+);
+
+create table Wish(
+                     id int auto_increment,
+                     product_name varchar(100) not null,
+                     link varchar(2048),
+                     description varchar(1000),
+                     quantity int,
+                     price decimal(8,2),
+                     wishlist_id int,
+                     primary key(id),
+                     foreign key (wishlist_id) references Wishlist (id) on delete cascade
+);
+
 
 INSERT INTO Profile (username, password, email) VALUES
-                                                 ('anna', 'hashed_pw_anna', 'anna@example.com'),
-                                                 ('mads', 'hashed_pw_mads', 'mads@example.com');
+                                                 ('anna', 'anna_123', 'anna@test.com'),
+                                                 ('mads', 'mads_321', 'mads@test.com');
 
 
 INSERT INTO Wishlist (title, owner) VALUES
