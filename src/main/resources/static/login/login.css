@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f5f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 320px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #4bb5c1;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #3aa3ae;
+}
+
+/* --- LINKS SOM KNAPPER --- */
+
+.full-width {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.secondary-btn {
+    display: block;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    background: #e8e8e8;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.secondary-btn:hover {
+    background: #dcdcdc;
+}
+
+.link-btn {
+    display: inline-block;
+    margin-top: 10px;
+    color: #4bb5c1;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.link-btn:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}

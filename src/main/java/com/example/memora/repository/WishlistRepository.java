@@ -38,6 +38,7 @@ public class WishlistRepository {
     }
 
 
+
     // Metode for at kunne retunere ønsker
     public List<Wishlist> getWishLists(int owner) {
         String sql = """
