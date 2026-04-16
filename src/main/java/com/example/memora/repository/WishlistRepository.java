@@ -34,7 +34,7 @@ public class WishlistRepository {
     public void createWishlist(Wishlist wishlist, int ownerId) {
         String sql = "INSERT INTO Wishlist (title, owner) VALUES (?, ?)";
 
-        jdbcTemplate.update(sql, wishlist.getTitle(), wishlist.getOwner());
+        jdbcTemplate.update(sql, wishlist.getTitle(), ownerId);
     }
 
 
@@ -54,7 +54,7 @@ public class WishlistRepository {
         String sql = """
                 SELECT Wishlist.id, Wishlist.title, Wishlist.owner
                 FROM Wishlist
-                WHERE id = ?;
+                WHERE Wishlist.id = ?;
                 """;
         return jdbcTemplate.queryForObject(sql, rowMapper, wishlistID);
     }
@@ -62,6 +62,11 @@ public class WishlistRepository {
     public void updateWishlist(int id, Wishlist wishlist) {
         String sql = "UPDATE Wishlist SET title = ? WHERE id = ?";
         jdbcTemplate.update(sql, wishlist.getTitle(), id);
+    }
+
+    public void deleteWishlist(int id) {
+        String sql = "DELETE FROM Wishlist WHERE id = ?";
+        jdbcTemplate.update(sql, id);
     }
 }
 

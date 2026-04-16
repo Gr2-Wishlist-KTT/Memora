@@ -1,18 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mine ønskelister – Memora</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
+
 <body>
-<table>
-<tr th:each="wishlist : ${wishlists}">
-    <td>
-        <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
-        <p th:text="${wishlist.title}"></p>
-    </a>
-    </td>
-</tr>
-</table>
+
+<!-- Navbar -->
+<div th:replace="fragments/nav :: navbar"></div>
+
+<div class="page-container">
+
+    <!-- Mine ønskelister -->
+    <section>
+        <h2>Mine ønskelister</h2>
+
+        <div class="wishlist-grid">
+
+            <!-- TOMT KORT MED PLUS -->
+            <a href="/wishlists/create" class="wishlist-card add-card">
+                <span class="plus">+</span>
+                <p>Ny ønskeliste</p>
+            </a>
+
+            <!-- Dine eksisterende ønskelister -->
+            <div class="wishlist-card" th:each="wishlist : ${myWishlists}">
+                <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+                    <h3 th:text="${wishlist.title}"></h3>
+                </a>
+
+                <a th:href="@{/wishlists/{id}/edit(id=${wishlist.id})}">
+                    <h3>Edit</h3>
+                </a>
+
+                <form th:action="@{/wishlists/{id}/delete(id=${wishlist.id})}" method="post">
+                    <button type="submit" class="delete-btn">Slet</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Delte ønskelister -->
+    <section>
+        <h2>Ønskelister delt med mig</h2>
+
+        <div class="wishlist-grid">
+            <div class="wishlist-card" th:each="wishlist : ${sharedWishlists}">
+                <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+                    <h3 th:text="${wishlist.title}"></h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</div>
+
 </body>
 </html>

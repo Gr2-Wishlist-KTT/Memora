@@ -1,6 +1,7 @@
 package com.example.memora.service;
 
 
+import com.example.memora.model.User;
 import com.example.memora.model.Wishlist;
 import com.example.memora.repository.WishlistRepository;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,14 @@ public class WishlistService {
 
     public void updateWishlist(int id, Wishlist wishlist) {
         repository.updateWishlist(id, wishlist);
+    }
+
+    public void deleteWishlist(int id) {
+        repository.deleteWishlist(id);
+    }
+
+    public boolean canEdit(User user, Wishlist wishlist){
+        return user.getId() == wishlist.getOwner();
     }
 }
 

@@ -19,7 +19,8 @@
     </div>
 </div>
 
+<div th:if="${canEdit}">
 <a th:href="@{/wishlists/{wishlistID}/wishes/new(wishlistID=${wishlistID})}" class="plus-knap">+</a>
-
+</div>
 </body>
 </html>
