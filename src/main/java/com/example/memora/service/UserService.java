@@ -37,10 +37,14 @@ public class UserService {
     }
 
 
-
-
     @Transactional
     public void saveUser(User user){
         repository.saveUser(user);
     }
+
+    public void editProfile (User user){
+        repository.editProfile(user);
+    }
+
+
 }
