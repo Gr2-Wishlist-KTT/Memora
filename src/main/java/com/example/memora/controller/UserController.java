@@ -59,7 +59,6 @@ public class UserController {
         return "auth/login";
     }
 
-    // MANGLER DENNE METOEDE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AT BLIVE IMPLEMENTERET
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

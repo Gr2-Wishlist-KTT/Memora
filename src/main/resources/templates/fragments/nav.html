@@ -14,7 +14,8 @@
     </div>
 
     <div class="nav-right">
-        <a th:href="@{/auth/login}" class="login-btn">Login</a>
+        <a th:if="${session.user == null}" th:href="@{/auth/login}" class="login-btn">Login</a>
+        <a th:if="${session.user != null}" th:href="@{/auth/logout}" class="login-btn">Log ud</a>
     </div>
 </nav>
 
