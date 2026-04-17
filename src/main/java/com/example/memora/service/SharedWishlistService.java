@@ -1,8 +1,10 @@
 package com.example.memora.service;
 
 import com.example.memora.model.SharedWishlist;
+import com.example.memora.model.User;
 import com.example.memora.model.Wishlist;
 import com.example.memora.repository.SharedWishlistRepository;
+import com.example.memora.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,10 +15,12 @@ public class SharedWishlistService {
 
     private final SharedWishlistRepository sharedWishlistRepository;
     private final WishlistService wishlistService;
+    private final UserRepository userRepository;
 
-    public SharedWishlistService(SharedWishlistRepository sharedWishlistRepository, WishlistService wishlistService){
+    public SharedWishlistService(SharedWishlistRepository sharedWishlistRepository, WishlistService wishlistService, UserRepository userRepository){
         this.sharedWishlistRepository = sharedWishlistRepository;
         this.wishlistService = wishlistService;
+        this.userRepository = userRepository;
     }
 
     public List<Wishlist> getWishlistsSharedWithUser(int userId ) {
@@ -31,7 +35,12 @@ public class SharedWishlistService {
         return wishlists;
     }
 
-    public void shareWishlist(int wishlistId, int userId) {
+    public void shareWishlist(int wishlistId, String email) {
+        int userId = userRepository.findUserByEmail(email).getId();
         sharedWishlistRepository.addShare(wishlistId, userId);
+    }
+
+    public void deleteShare(int wishlistId, int userId){
+        sharedWishlistRepository.deleteShare(wishlistId, userId);
     }
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 th:text="${wishlist.title}"> </h1>
+
+<form th:action="@{/wishlists/{id}/share (id=${wishlist.id})}" method="post">
+
+  <input type="text" name="email" required>
+
+  <button type="submit">Del</button>
+</form>
+
+<a th:href="@{/wishlists/{id} (id=${wishlist.id})}">Tilbage</a>
+
+</body>
+</html>

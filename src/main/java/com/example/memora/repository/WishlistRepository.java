@@ -37,9 +37,6 @@ public class WishlistRepository {
         jdbcTemplate.update(sql, wishlist.getTitle(), ownerId);
     }
 
-
-
-    // Metode for at kunne retunere ønsker
     public List<Wishlist> getWishLists(int owner) {
         String sql = """
                 SELECT Wishlist.id, Wishlist.title, Wishlist.owner
@@ -50,6 +47,7 @@ public class WishlistRepository {
 
     }
 
+    // Metode for at kunne retunere ønsker
     public Wishlist getWishList(int wishlistID) {
         String sql = """
                 SELECT Wishlist.id, Wishlist.title, Wishlist.owner
