@@ -30,8 +30,12 @@ public class UserRepository {
                 FROM Profile
                 WHERE email = ?
                 """;
+try {
+    return jdbcTemplate.queryForObject(sql, rowMapper, email);
 
-        return jdbcTemplate.queryForObject(sql, rowMapper, email);
+}catch (Exception e) {
+    return null;
+}
     }
 
     public User findUserById(int id){
@@ -50,4 +54,25 @@ public class UserRepository {
         jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getEmail());
 
     }
+    public void editProfile(User user){
+        String sql = "UPDATE Profile SET username = ?, password = ? WHERE email =?";
+        jdbcTemplate.update(
+                sql,
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail()
+        );
+    }
+
+
+    public void deleteProfile(String email) {
+        String sql = """
+                DELETE FROM Profile
+                WHERE email = ?
+                """;
+        jdbcTemplate.update(sql, email);
+    }
+
+
+
 }

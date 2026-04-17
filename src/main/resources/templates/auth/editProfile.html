@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/login/login.css}">
+</head>
+
+<div class = "login-container">
+
+    <h1>Min profil</h1>
+
+    <form th:action="@{/auth/editProfile}" th:object="${user}" method="post">
+
+        <label>Brugernavn</label>
+        <input type="text" th:field="*{username}" required>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" readonly>
+
+        <label>Adgangskode</label>
+        <input type="password" th:field="*{password}" required>
+
+        <button type="submit">Gem ændringer</button>
+
+    </form>
+
+    <a th:href="@{/auth/logout}" class="secondary-btn full-width">
+        Log ud
+    </a>
+
+</div>
+
+</body>
+</html>

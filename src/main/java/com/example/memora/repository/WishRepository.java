@@ -42,6 +42,16 @@ public class WishRepository {
         return jdbcTemplate.query(sql, rowMapper, id);
     }
 
+    public Wish findWish(int id) {
+        String sql = """
+                SELECT id, product_name,link, description, quantity, price
+                FROM Wish
+                WHERE id = ?;
+              
+                """;
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
     // Metode for at kunne tilføje ønsker
     public int saveWishes(Wish wish, int wishlistId) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
