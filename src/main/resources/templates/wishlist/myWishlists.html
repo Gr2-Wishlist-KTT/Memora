@@ -56,6 +56,8 @@
 
                 <div class="wishlist-actions">
                     <form th:action="@{/wishlists/{id}/share/delete(id=${wishlist.id})}" method="post">
+                        <input type="hidden" name="viewerId" th:value="${session.user.id}">
+                        <input type="hidden" name="source" value="front">
                         <button type="submit" class="action-btn delete-btn">Fjern</button>
                     </form>
                 </div>

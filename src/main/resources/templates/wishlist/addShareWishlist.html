@@ -6,16 +6,35 @@
 </head>
 <body>
 
-<h1 th:text="${wishlist.title}"> </h1>
+<div class="page-container">
 
-<form th:action="@{/wishlists/{id}/share (id=${wishlist.id})}" method="post">
+    <h1 th:text="${wishlist.title}"></h1>
 
-  <input type="text" name="email" required>
+    <div>
+        <form th:action="@{/wishlists/{id}/share (id=${wishlist.id})}" method="post">
+            <label>Del med email</label>
+            <input type="email" name="email" required placeholder="Indtast email...">
+            <button type="submit">Del</button>
+        </form>
+    </div>
 
-  <button type="submit">Del</button>
-</form>
+    <h2>Personer med adgang</h2>
 
-<a th:href="@{/wishlists/{id} (id=${wishlist.id})}">Tilbage</a>
+    <div>
+        <div th:each="viewer : ${viewers}">
+            <p th:text="${viewer.getEmail()}"></p>
+
+            <form th:action="@{/wishlists/{id}/share/delete(id=${wishlist.id})}" method="post">
+                <input type="hidden" name="viewerId" th:value="${viewer.id}">
+                <input type="hidden" name="source" value="share">
+                <button type="submit" class="remove-btn">Fjern</button>
+            </form>
+        </div>
+    </div>
+
+    <a th:href="@{/wishlists/{id} (id=${wishlist.id})}">← Tilbage</a>
+
+</div>
 
 </body>
 </html>

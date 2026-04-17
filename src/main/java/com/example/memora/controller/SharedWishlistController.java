@@ -23,6 +23,7 @@ public class SharedWishlistController {
     @GetMapping()
     public String addShareWishlist(Model model, @PathVariable int wishlistId) {
         model.addAttribute("wishlist", wishlistService.getWishlist(wishlistId));
+        model.addAttribute("viewers", sharedWishlistService.findViewersForWishlist(wishlistId));
         return "wishlist/addShareWishlist";
     }
 
@@ -32,14 +33,20 @@ public class SharedWishlistController {
 
         sharedWishlistService.shareWishlist(wishlistId, email);
 
-        return "redirect:/wishlists/" + wishlistId;
+        return "redirect:/wishlists/" + wishlistId + "/share";
     }
 
     @PostMapping("/delete")
-    public String deleteShareWishlist(@PathVariable int wishlistId, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        int userId = user.getId();
-        sharedWishlistService.deleteShare(wishlistId, userId);
-        return "redirect:/wishlists";
+    public String deleteShareWishlist(@PathVariable int wishlistId,
+                                      @RequestParam int viewerId,
+                                      @RequestParam String source) {
+
+        sharedWishlistService.deleteShare(wishlistId, viewerId);
+
+        if (source.equals("front")) {
+            return "redirect:/wishlists";
+        }
+
+        return "redirect:/wishlists/" + wishlistId + "/share";
     }
 }

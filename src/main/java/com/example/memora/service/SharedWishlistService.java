@@ -35,6 +35,18 @@ public class SharedWishlistService {
         return wishlists;
     }
 
+    public List<User> findViewersForWishlist(int wishlistId){
+        List<SharedWishlist> shares = sharedWishlistRepository.findViewersForWishlist(wishlistId);
+
+        List<User> viewers = new ArrayList<>();
+        for (SharedWishlist share : shares) {
+            User viewer = userRepository.findUserById(share.getSharedWithUserId());
+            viewers.add(viewer);
+        }
+
+        return viewers;
+    }
+
     public void shareWishlist(int wishlistId, String email) {
         int userId = userRepository.findUserByEmail(email).getId();
         sharedWishlistRepository.addShare(wishlistId, userId);
