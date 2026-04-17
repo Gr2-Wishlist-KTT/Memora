@@ -59,7 +59,7 @@ public class UserController {
         return "auth/login";
     }
 
-    @GetMapping("/MyProfile")
+    @GetMapping("/editProfile")
     public String showEditProfile(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
@@ -71,7 +71,7 @@ public class UserController {
         userService.editProfile(profile);
 
         session.setAttribute("user", profile);
-        return "redirect:auth/editProfile";
+        return "redirect:/wishlists";
 
     }
 

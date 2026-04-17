@@ -10,7 +10,7 @@
 
     <h1>Min profil</h1>
 
-    <form th:action="@{/auth/profile}" th:object="${user}" method="post">
+    <form th:action="@{/auth/editProfile}" th:object="${user}" method="post">
 
         <label>Brugernavn</label>
         <input type="text" th:field="*{username}" required>
