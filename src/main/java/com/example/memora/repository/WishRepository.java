@@ -86,4 +86,15 @@ public class WishRepository {
                 wish.getId()
         );
     }
+
+    public Wish findWishById(int id) {
+        String sql = """
+                SELECT id, product_name, description, quantity, price, link, wishlist_id
+                FROM Wish
+                WHERE id = ?
+                """;
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
 }
+
+

@@ -29,4 +29,7 @@ public class WishService {
     public int saveWishes(Wish wish, int wishlistId) {
         return repository.saveWishes(wish, wishlistId);
     }
+    public Wish findWishById(int id) {
+        return repository.findWishById(id);
+    }
 }

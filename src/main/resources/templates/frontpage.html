@@ -3,13 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Startside</title>
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
 </head>
+
 <body>
 
+<!-- NAV -->
 <div th:replace="fragments/nav :: navbar"></div>
 
-<h1>Velkommen</h1>
-<a th:href="@{/memora/login}">Gå til login</a>
+<!-- HERO -->
+<header class="page-header">
+
+    <div>
+        <h1>Velkommen til Memora</h1>
+        <p class="page-header-subtitle">
+            Gem dine ønsker, drømme og idéer ét sted
+        </p>
+    </div>
+
+    <a th:href="@{/memora/login}" class="btn-primary">
+        Log ind
+    </a>
+
+</header>
+
+<!-- CONTENT -->
+<main class="grid">
+
+    <div class="card">
+
+        <h3>✨ Organisér dine ønsker</h3>
+        <p class="desc">
+            Opret ønskelister til fødselsdag, jul eller personlige mål.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>🔗 Gem links</h3>
+        <p class="desc">
+            Tilføj produkter direkte fra nettet og find dem igen senere.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>💡 Hold overblik</h3>
+        <p class="desc">
+            Alt samlet i et enkelt og moderne system.
+        </p>
+
+    </div>
+
+</main>
 
 </body>
 </html>

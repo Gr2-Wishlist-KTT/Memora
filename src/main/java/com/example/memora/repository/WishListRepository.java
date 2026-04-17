@@ -50,16 +50,32 @@ public class WishListRepository {
     // Metode for at kunne retunere ønsker
     public List<WishList> getWishLists(int owner) {
         String sql = """
-                SELECT Wishlist.id, Wishlist.title, Wishlist.owner
+                SELECT id, title, owner
                 FROM Wishlist
-                WHERE Wishlist.owner = ?;
+                WHERE owner = ?;
                 """;
         return jdbcTemplate.query(sql, rowMapper, owner);
 
     }
+
     public void updateWishlist(int id, String title) {
         String sql = "UPDATE Wishlist SET title = ? WHERE id = ?";
         jdbcTemplate.update(sql, title, id);
     }
+
+    public void deleteWishlist(int id) {
+        String sql = "DELETE Wishlist WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
+
+    public WishList findWishlistById(int id) {
+        String sql = """ 
+                        SELECT id, title, owner
+                        FROM Wishlist WHERE id = ?
+                        """;
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+
 }
 

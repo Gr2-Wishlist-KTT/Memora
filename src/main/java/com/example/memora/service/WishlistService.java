@@ -26,5 +26,13 @@ public class WishlistService {
     public void updateWishlist(int id, String title) {
         repository.updateWishlist(id, title);
     }
+
+    public void deleteWishlist(int id) {
+        repository.deleteWishlist(id);
+    }
+
+    public WishList findWishlistById(int id) {
+        return repository.findWishlistById(id);
+    }
 }
 
