@@ -1,7 +1,8 @@
-drop table if exists Profile;
-drop table if exists Wishlist;
-drop table if exists Wish;
 
+drop all objects;
+-- drop table if exists Wish;
+-- drop table if exists Wishlist;
+-- drop table if exists Profile;
 
 create table Profile(
                      id int auto_increment,

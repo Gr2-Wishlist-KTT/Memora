@@ -29,7 +29,7 @@ class WishRepositoryTest {
     @Autowired
     private WishRepository wishRepository;
 
-    // FIND WISHES MED ID "1"
+    // FIND WISH MED ID "1" FRA EN LISTE
     @Test
     void getWishes() {
         List<Wish> wishes = wishRepository.getWishes(1);
@@ -40,8 +40,17 @@ class WishRepositoryTest {
         assertThat(wishes.get(1).getProductName()).isEqualTo("Yoga måtte");
     }
 
+    //FIND WISH MED ID "1" FRA DATABASEN
+@Test
+void findWish(){
+       Wish wish = wishRepository.findWish(1);
 
-    @Test
+        assertThat(wish.getProductName()).isEqualTo("AirPods Pro");
+        assertThat(wish.getId()).isEqualTo(1);
+        assertThat(wish.getPrice()).isEqualTo(wishRepository.findWish(1).getPrice());
+    }
+
+        @Test
     void saveWishes() {
         Wish wish = new Wish(
                 10,
@@ -63,18 +72,39 @@ class WishRepositoryTest {
     }
 
     @Test
-    void removeWish() {
+    void removeWish(){
 
-        List<Wish> before = wishRepository.getWishes(1);
+     Wish wish = wishRepository.findWish(1);
+     assertThat(wish).isNotNull();
 
-        wishRepository.removeWish(1);
+     wishRepository.removeWish(1);
+     assertThrows(Exception.class, () -> {wishRepository.findWish(1);
+     });
 
-        List<Wish> after = wishRepository.getWishes(1);
-
-        assertThat(after.size()).isNotEqualTo(before.size());
     }
+//
+//    @Test
+//    void removeWish2() {
+//
+//        List<Wish> before = wishRepository.getWishes(1);
+//
+//        wishRepository.removeWish(1);
+//
+//        List<Wish> after = wishRepository.getWishes(1);
+//
+//        assertThat(after.size()).isNotEqualTo(before.size());
+//    }
 
     @Test
     void updateWish() {
+        Wish wish = new Wish(1, "Bowling Kugle", "Str. 9, med flammer, 8kg", 1, 2294.00, "https://bowling-stars.com/da/collections/bowlingkugler/products/sensor-solid-kugle?_pos=73&_fid=134d91da3&_ss=c&variant=48730750910791");
+        wishRepository.updateWish(wish);
+
+        assertThat(wish).isNotNull();
+        assertThat(wish.getProductName()).isEqualTo("Bowling Kugle");
+        assertThat(wish.getId()).isEqualTo(1);
+        assertThat(wish.getLinkToProduct()).isEqualTo("https://bowling-stars.com/da/collections/bowlingkugler/products/sensor-solid-kugle?_pos=73&_fid=134d91da3&_ss=c&variant=48730750910791");
+
+
     }
 }
