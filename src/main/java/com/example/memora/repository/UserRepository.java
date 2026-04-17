@@ -38,6 +38,16 @@ try {
 }
     }
 
+    public User findUserById(int id){
+        String sql = """
+                SELECT id, username, password, email
+                FROM Profile
+                WHERE id = ?
+                """;
+
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
     public void saveUser(User user) {
         String sql = "INSERT INTO Profile (username, password, email) VALUES (?, ?, ?)";
 

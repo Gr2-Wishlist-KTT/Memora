@@ -8,6 +8,8 @@
 
 <h1>Min ønskeliste</h1>
 
+<a th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del</a>
+
 <div class="liste">
     <div class="papir">
         <button class="tilfoej-knap">Tilføj ønske</button>
@@ -20,7 +22,7 @@
 </div>
 
 <div th:if="${canEdit}">
-<a th:href="@{/wishlists/{wishlistID}/wishes/new(wishlistID=${wishlistID})}" class="plus-knap">+</a>
+<a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}" class="plus-knap">+</a>
 </div>
 </body>
 </html>

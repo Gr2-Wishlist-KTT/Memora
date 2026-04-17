@@ -28,17 +28,17 @@
 
             <!-- Dine eksisterende ønskelister -->
             <div class="wishlist-card" th:each="wishlist : ${myWishlists}">
-                <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+                <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
                     <h3 th:text="${wishlist.title}"></h3>
                 </a>
 
-                <a th:href="@{/wishlists/{id}/edit(id=${wishlist.id})}">
-                    <h3>Edit</h3>
-                </a>
+                <div class="wishlist-actions">
+                    <a class="action-btn edit-btn" th:href="@{/wishlists/{id}/edit(id=${wishlist.id})}">Rediger</a>
 
-                <form th:action="@{/wishlists/{id}/delete(id=${wishlist.id})}" method="post">
-                    <button type="submit" class="delete-btn">Slet</button>
-                </form>
+                    <form th:action="@{/wishlists/{id}/delete(id=${wishlist.id})}" method="post">
+                        <button type="submit" class="action-btn delete-btn">Slet</button>
+                    </form>
+                </div>
             </div>
 
         </div>
@@ -50,9 +50,17 @@
 
         <div class="wishlist-grid">
             <div class="wishlist-card" th:each="wishlist : ${sharedWishlists}">
-                <a th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+                <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
                     <h3 th:text="${wishlist.title}"></h3>
                 </a>
+
+                <div class="wishlist-actions">
+                    <form th:action="@{/wishlists/{id}/share/delete(id=${wishlist.id})}" method="post">
+                        <input type="hidden" name="viewerId" th:value="${session.user.id}">
+                        <input type="hidden" name="source" value="front">
+                        <button type="submit" class="action-btn delete-btn">Fjern</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

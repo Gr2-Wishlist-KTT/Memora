@@ -34,10 +34,29 @@ public class SharedWishlistRepository {
         return jdbcTemplate.query(sql, rowMapper, userId);
     }
 
+    public List<SharedWishlist> findViewersForWishlist(int wishlistId) {
+        String sql = """
+                    SELECT * FROM shared_wishlist
+                    WHERE wishlist_id = ?
+                """;
+
+        return jdbcTemplate.query(sql, rowMapper, wishlistId);
+    }
+
     public void addShare(int wishlistId, int userId) {
         String sql = """
                     INSERT INTO shared_wishlist (wishlist_id, shared_with_user_id)
                     VALUES (?, ?)
+                """;
+
+        jdbcTemplate.update(sql, wishlistId, userId);
+    }
+
+    public void deleteShare(int wishlistId, int userId) {
+        String sql = """
+                DELETE FROM shared_wishlist
+                WHERE wishlist_id = ?
+                AND shared_with_user_id = ?
                 """;
 
         jdbcTemplate.update(sql, wishlistId, userId);
