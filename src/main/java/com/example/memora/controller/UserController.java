@@ -88,7 +88,7 @@ public class UserController {
         User user = userService.findUserByEmail(email);
 
         if (user == null) {
-            model.addAttribute("Email not found", true);
+            model.addAttribute("EmailNotFound", true);
             return "auth/forgot-password";
         }
         user.setPassword(newPassword);
