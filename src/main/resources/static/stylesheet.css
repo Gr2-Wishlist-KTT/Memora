@@ -123,3 +123,129 @@ h2 {
 .delete-btn:hover {
     background: #ffd6d6;
 }
+
+/* --- ABOUT PAGE --- */
+
+.about {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Main title */
+.about h1 {
+    margin-top: 0;
+    font-size: 32px;
+    color: #333;
+}
+
+/* Section titles */
+.about h2 {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #4bb5c1;
+}
+
+/* Paragraphs */
+.about p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Fix spacing when h2 is inside p (not ideal HTML, but this helps) */
+.about p h2 {
+    margin-top: 0;
+}
+
+/* Values list */
+.about ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* Value items */
+.about li {
+    background: #f7f5f2;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #4bb5c1;
+    color: #444;
+    font-size: 15px;
+}
+
+/* Bold titles in list */
+.about li strong {
+    color: #333;
+}
+
+/* Subtle hover effect */
+.about li:hover {
+    background: #eef8f9;
+}
+
+/* --- CONTACT PAGE --- */
+
+.contact {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.contact h1 {
+    margin-top: 0;
+    font-size: 32px;
+    color: #333;
+}
+
+/* Intro text */
+.contact .intro {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Grid layout */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* Contact cards */
+.contact-card {
+    background: #f7f5f2;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #4bb5c1;
+    transition: 0.2s;
+}
+
+
+/* Headings */
+.contact-card h3 {
+    margin-top: 0;
+    color: #4bb5c1;
+}
+
+/* Text */
+.contact-card p {
+    margin: 0;
+    color: #444;
+}
+
+/* Links */
+.contact-card a {
+    color: #4bb5c1;
+    text-decoration: none;
+    font-weight: 500;
+}
+

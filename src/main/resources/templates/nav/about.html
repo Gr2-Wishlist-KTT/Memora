@@ -1,41 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
     <title>Om os</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
+
 <body>
 
 <div th:replace="fragments/nav :: navbar"></div>
 
-<section class="about">
-    <h1>Om os</h1>
+<div class="page-container">
+    <section class="about">
 
-    <p>
-        Vi er en lille, passioneret gruppe udviklere, der brænder for at skabe digitale løsninger,
-        som gør hverdagen lettere for vores brugere. Vores fokus er på kvalitet, brugervenlighed
-        og gennemtænkt design.
-    </p>
+        <h1>Om os</h1>
 
-    <p>
-        Vi tror på, at teknologi skal være tilgængelig for alle, og at selv små detaljer kan gøre
-        en stor forskel. Derfor arbejder vi målrettet på at levere produkter, der både er intuitive,
-        stabile og skabt med omtanke.
-    </p>
+        <h2>Vores vision</h2>
+        <p>
+            Vi gør det enkelt og naturligt at ønske sig oplevelser frem for ting.
+            Gennem personaliserede ønsker skaber vi mere meningsfulde gaver,
+            der bringer mennesker tættere sammen.
+        </p>
 
-    <h2>Vores mission</h2>
-    <p>
-        At udvikle digitale værktøjer, der skaber værdi, sparer tid og gør komplekse opgaver simple.
-    </p>
+        <p>
+            Vi tror på, at de bedste gaver ikke er ting, men oplevelser, der bliver til minder.
+        </p>
 
-    <h2>Vores værdier</h2>
-    <ul>
-        <li><strong>Brugeren først</strong> — alt vi bygger tager udgangspunkt i rigtige behov.</li>
-        <li><strong>Kvalitet</strong> — vi går op i detaljer og skriver kode, vi kan stå inde for.</li>
-        <li><strong>Transparens</strong> — vi kommunikerer åbent og ærligt.</li>
-        <li><strong>Innovation</strong> — vi udforsker nye idéer og teknologier.</li>
-    </ul>
-</section>
+        <p>
+            Derfor har vi skabt en platform, hvor det er nemt at ønske sig og give oplevelser –
+            fra spontane hverdagsøjeblikke til uforglemmelige eventyr.
+            Ved at gøre ønsker personlige og relevante hjælper vi mennesker med at give gaver,
+            der skaber ægte værdi og styrker relationer.
+        </p>
+
+        <p>
+            Vi er et team, der er fleksibelt og omstillingsparat.
+            Vi udvikler løbende vores platform med fokus på innovation, fællesskab og bæredygtighed.
+            Derudover arbejder vi målrettet på at reducere unødvendigt forbrug
+            ved at fremme oplevelser frem for materielle goder.
+        </p>
+
+        <h2>Vores mission</h2>
+        <p>
+            Vi gør det enkelt at give og modtage oplevelser,
+            der skaber minder og styrker relationer.
+        </p>
+
+        <h2>Vores værdier</h2>
+        <ul>
+            <li><strong>Oplevelser frem for ting</strong> — vi arbejder for at gøre oplevelser til det naturlige valg.</li>
+            <li><strong>Meningsfuldhed</strong> — vi skaber løsninger, der gør gaver mere personlige og værdifulde.</li>
+            <li><strong>Fællesskab</strong> — vi styrker relationer og bringer mennesker tættere sammen.</li>
+            <li><strong>Fleksibilitet</strong> — vi er omstillingsparate og finder løsninger undervejs.</li>
+            <li><strong>Innovation</strong> — vi udforsker nye idéer og udvikler os løbende.</li>
+            <li><strong>Bæredygtighed</strong> — vi bidrager til at reducere unødvendigt forbrug.</li>
+        </ul>
+
+    </section>
+</div>
 
 </body>
 </html>
