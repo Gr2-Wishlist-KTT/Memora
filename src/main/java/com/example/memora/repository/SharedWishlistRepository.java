@@ -52,6 +52,16 @@ public class SharedWishlistRepository {
         jdbcTemplate.update(sql, wishlistId, userId);
     }
 
+    public boolean existsShare(int wishlistId, int userId) {
+        String sql = """
+                    SELECT COUNT(*) FROM shared_wishlist
+                    WHERE wishlist_id = ? AND shared_with_user_id = ?
+                """;
+
+        int count = jdbcTemplate.queryForObject(sql, Integer.class, wishlistId, userId);
+        return count > 0;
+    }
+
     public void deleteShare(int wishlistId, int userId) {
         String sql = """
                 DELETE FROM shared_wishlist

@@ -18,6 +18,10 @@
 
     <h1 th:text="${wishlist.title}"></h1>
 
+    <div th:if="${errorMessage}" class="error-box">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
     <!-- Share form -->
     <div class="share-box">
         <h2>Del ønskelisten</h2>

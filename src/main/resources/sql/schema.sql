@@ -3,11 +3,11 @@ create database memora;
 use memora;
 
 create table Profile(
-                     id int auto_increment,
-                     username varchar(50) not null,
-                     password varchar(100) not null,
-                     email varchar(254) not null unique,
-                     primary key (id)
+                        id int auto_increment,
+                        username varchar(50) not null,
+                        password varchar(100) not null,
+                        email varchar(254) not null unique,
+                        primary key (id)
 );
 
 create table Wishlist(
@@ -29,11 +29,13 @@ create table Wish(
                      primary key(id),
                      foreign key (wishlist_id) references Wishlist (id) on delete cascade
 );
+
 create table Shared_wishlist(
                                 id int auto_increment,
                                 wishlist_id int not null,
                                 shared_with_user_id int not null,
                                 primary key(id),
                                 foreign key (wishlist_id) references Wishlist (id) on delete cascade,
-                                foreign key (shared_with_user_id) references Profile (id) on delete cascade
+                                foreign key (shared_with_user_id) references Profile (id) on delete cascade,
+                                constraint unique_share UNIQUE (wishlist_id, shared_with_user_id)
 );

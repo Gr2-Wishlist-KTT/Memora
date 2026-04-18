@@ -28,12 +28,21 @@ public class SharedWishlistController {
     }
 
     @PostMapping()
-    public String saveShareWishlist(@PathVariable int wishlistId,
-                                    @RequestParam String email) {
+    public String saveShareWishlist(@PathVariable int wishlistId, @RequestParam String email, Model model) {
 
-        sharedWishlistService.shareWishlist(wishlistId, email);
+        try {
+            sharedWishlistService.shareWishlist(wishlistId, email);
+            return "redirect:/wishlists/" + wishlistId + "/share";
 
-        return "redirect:/wishlists/" + wishlistId + "/share";
+        } catch (IllegalArgumentException e) {
+
+            model.addAttribute("errorMessage", e.getMessage());
+
+            model.addAttribute("wishlist", wishlistService.getWishlist(wishlistId));
+            model.addAttribute("viewers", sharedWishlistService.findViewersForWishlist(wishlistId));
+
+            return "wishlist/addShareWishlist";
+        }
     }
 
     @PostMapping("/delete")

@@ -249,3 +249,12 @@ h2 {
     font-weight: 500;
 }
 
+.error-box {
+    background-color: #ffe0e0;
+    border: 1px solid #ff6b6b;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    color: #a30000;
+}
+
