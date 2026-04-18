@@ -75,6 +75,30 @@ public class UserController {
 
     }
 
+    @GetMapping("/forgot-password")
+    public String showForgotPassword(){
+        return "auth/forgot-password";
+
+    }
+
+    @PostMapping("/forgot-password")
+    public String forgotPassword (@RequestParam String email,
+                                  @RequestParam String newPassword, Model model){
+
+        User user = userService.findUserByEmail(email);
+
+        if (user == null) {
+            model.addAttribute("Email not found", true);
+            return "auth/forgot-password";
+        }
+        user.setPassword(newPassword);
+        userService.editProfile(user);
+
+        return "redirect:/auth/login";
+    }
+
+
+
     // MANGLER DENNE METOEDE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AT BLIVE IMPLEMENTERET
     @GetMapping("/logout")
     public String logout(HttpSession session) {
