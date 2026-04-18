@@ -51,6 +51,12 @@ public class SharedWishlistService {
 
         // Find user at dele med
         User targetUser = userRepository.findUserByEmail(email);
+
+        // Hvis brugeren ikke findes
+        if (targetUser == null) {
+            throw new IllegalArgumentException("Der findes ingen bruger med denne email.");
+        }
+
         int targetUserId = targetUser.getId();
 
         // Find ejer af ønskeliste
