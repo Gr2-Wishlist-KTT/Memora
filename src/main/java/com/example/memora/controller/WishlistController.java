@@ -1,6 +1,5 @@
 package com.example.memora.controller;
 
-import com.example.memora.model.SharedWishlist;
 import com.example.memora.model.User;
 import com.example.memora.model.Wishlist;
 import com.example.memora.service.SharedWishlistService;
