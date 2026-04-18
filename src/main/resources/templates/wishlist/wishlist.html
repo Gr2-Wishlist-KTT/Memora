@@ -3,26 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Ønskeliste</title>
-    <link rel="stylesheet" th:href="@{/stylesheet.css}"></head>
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
+</head>
 <body>
 
 <h1>Min ønskeliste</h1>
 
 <a th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del</a>
 
-<div class="liste">
-    <div class="papir">
-        <button class="tilfoej-knap">Tilføj ønske</button>
+
+<div th:each="wishView : ${wishViews}">
+
+    <a th:href="@{{link}(link=${wishView.wish.linkToProduct})}">
+        <p th:text="${wishView.wish.productName}"></p>
+    </a>
+
+    <div th:if="${!canEdit}">
+        <!-- Ikke reserveret -->
+        <form th:if="${!wishView.reserved}"
+              th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wishView.wish.id})}"
+              method="post">
+            <button>Reserver</button>
+        </form>
+
+        <!-- Reserveret af mig -->
+        <form th:if="${wishView.reservedByMe}"
+              th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wishView.wish.id})}"
+              method="post">
+            <button>Fjern reservation</button>
+        </form>
+
+        <!-- Reserveret af en anden -->
+        <p th:if="${wishView.reserved and !wishView.reservedByMe}">
+            Reserveret af en anden
+        </p>
     </div>
-    <div th:each="wish : ${wishes}">
-        <a th:href="@{{link}(link=${wish.linkToProduct})}">
-            <p th:text="${wish.productName}"></p>
-        </a>
-    </div>
+
 </div>
 
 <div th:if="${canEdit}">
-<a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}" class="plus-knap">+</a>
+    <a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}" class="plus-knap">+</a>
 </div>
 </body>
 </html>
