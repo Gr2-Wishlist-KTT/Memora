@@ -1,38 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Del ønskeliste – Memora</title>
+
+    <link rel="stylesheet" th:href="@{/navbar.css}">
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/share.css}">
 </head>
+
 <body>
 
-<div class="page-container">
+<!-- Navbar -->
+<div th:replace="fragments/nav :: navbar"></div>
+
+<div class="share-container">
 
     <h1 th:text="${wishlist.title}"></h1>
 
-    <div>
-        <form th:action="@{/wishlists/{id}/share (id=${wishlist.id})}" method="post">
-            <label>Del med email</label>
-            <input type="email" name="email" required placeholder="Indtast email...">
+    <!-- Share form -->
+    <div class="share-box">
+        <h2>Del ønskelisten</h2>
+
+        <form th:action="@{/wishlists/{id}/share (id=${wishlist.id})}" method="post" class="share-form">
+            <label for="email">Del med email</label>
+            <input id="email" type="email" name="email" required placeholder="Indtast email...">
             <button type="submit">Del</button>
         </form>
     </div>
 
-    <h2>Personer med adgang</h2>
+    <!-- Viewers -->
+    <div class="viewers-box">
+        <h2>Personer med adgang</h2>
 
-    <div>
-        <div th:each="viewer : ${viewers}">
-            <p th:text="${viewer.getEmail()}"></p>
+        <div class="viewer-list" th:each="viewer : ${viewers}">
+            <div class="viewer-item">
+                <p th:text="${viewer.getEmail()}"></p>
 
-            <form th:action="@{/wishlists/{id}/share/delete(id=${wishlist.id})}" method="post">
-                <input type="hidden" name="viewerId" th:value="${viewer.id}">
-                <input type="hidden" name="source" value="share">
-                <button type="submit" class="remove-btn">Fjern</button>
-            </form>
+                <form th:action="@{/wishlists/{id}/share/delete(id=${wishlist.id})}" method="post">
+                    <input type="hidden" name="viewerId" th:value="${viewer.id}">
+                    <input type="hidden" name="source" value="share">
+                    <button type="submit" class="remove-btn">Fjern</button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <a th:href="@{/wishlists/{id} (id=${wishlist.id})}">← Tilbage</a>
+    <a class="back-link" th:href="@{/wishlists/{id} (id=${wishlist.id})}">← Tilbage</a>
 
 </div>
 

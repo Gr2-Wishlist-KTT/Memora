@@ -1,0 +1,101 @@
+/* Container */
+.share-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Titles */
+.share-container h1 {
+    color: #4bb5c1;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* Share box */
+.share-box,
+.viewers-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.share-box h2,
+.viewers-box h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Share form */
+.share-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.share-form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.share-form button {
+    background: #4bb5c1;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.share-form button:hover {
+    background: #3aa3ae;
+}
+
+/* Viewer list */
+.viewer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7f5f2;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.viewer-item p {
+    margin: 0;
+    color: #444;
+}
+
+/* Remove button */
+.remove-btn {
+    background: #ffecec;
+    color: #d9534f;
+    border: 1px solid #d9534f;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.remove-btn:hover {
+    background: #ffd6d6;
+}
+
+/* Back link */
+.back-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #4bb5c1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

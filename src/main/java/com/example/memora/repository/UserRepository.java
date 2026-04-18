@@ -24,21 +24,21 @@ public class UserRepository {
         return user;
     };
 
-    public User findUserByEmail(String email){
+    public User findUserByEmail(String email) {
         String sql = """
                 SELECT id, username, password, email
                 FROM Profile
                 WHERE email = ?
                 """;
-try {
-    return jdbcTemplate.queryForObject(sql, rowMapper, email);
+        try {
+            return jdbcTemplate.queryForObject(sql, rowMapper, email);
 
-}catch (Exception e) {
-    return null;
-}
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public User findUserById(int id){
+    public User findUserById(int id) {
         String sql = """
                 SELECT id, username, password, email
                 FROM Profile
@@ -54,7 +54,8 @@ try {
         jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getEmail());
 
     }
-    public void editProfile(User user){
+
+    public void editProfile(User user) {
         String sql = "UPDATE Profile SET username = ?, password = ? WHERE email =?";
         jdbcTemplate.update(
                 sql,
@@ -72,7 +73,6 @@ try {
                 """;
         jdbcTemplate.update(sql, email);
     }
-
 
 
 }
