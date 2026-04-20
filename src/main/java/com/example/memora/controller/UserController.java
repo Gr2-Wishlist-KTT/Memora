@@ -70,7 +70,9 @@ public class UserController {
     public String editProfile(@ModelAttribute User profile, HttpSession session){
         userService.editProfile(profile);
 
-        session.setAttribute("user", profile);
+        User updatedUser = userService.findUserByEmail(profile.getEmail());
+
+        session.setAttribute("user", updatedUser);
         return "redirect:/wishlists";
 
     }
