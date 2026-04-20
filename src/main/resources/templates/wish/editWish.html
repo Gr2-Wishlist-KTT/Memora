@@ -21,7 +21,7 @@
         <form th:action="@{/wishlists/{wishlistId}/wishes/{wishID}(wishlistId=${wishlist}, wishID=${wish.id})}"
               th:object="${wish}" method="post" class="wishlist-form">
 
-            <label for="productName">Product</label>
+            <label for="productName">Produkt</label>
             <input id="productName" type="text" th:field="*{productName}" required>
 
             <label for="description">Beskrivelse</label>
@@ -37,6 +37,7 @@
     </div>
 
 </div>
+
 
 </body>
 </html>
