@@ -42,6 +42,8 @@ public class WishRepository {
         return jdbcTemplate.query(sql, rowMapper, id);
     }
 
+
+
     public Wish findWish(int id) {
         String sql = """
                 SELECT id, product_name,link, description, quantity, price
