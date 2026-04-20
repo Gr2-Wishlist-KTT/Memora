@@ -258,3 +258,68 @@ h2 {
     color: #a30000;
 }
 
+/* --- ADD WISHLIST PAGE --- */
+
+.form-box {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.form-box h1 {
+    margin-top: 0;
+    color: #4bb5c1;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.wishlist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.wishlist-form label {
+    font-size: 15px;
+    color: #444;
+}
+
+.wishlist-form input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.submit-btn {
+    background: #4bb5c1;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #3aa3ae;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #4bb5c1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+
