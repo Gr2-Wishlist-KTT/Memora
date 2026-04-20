@@ -8,7 +8,9 @@
 
 <h1>Min ønskeliste</h1>
 
-<a th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del</a>
+<div>
+    <a class="action-btn edit-btn" th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del</a>
+</div>
 
     <!-- Dine eksisterende ønskelister -->
     <div class="wishlist-card" th:each="wish : ${wishes}">
@@ -35,6 +37,9 @@
 
 <div th:if="${canEdit}">
 <a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}" class="plus-knap">+</a>
+</div>
+<div>
+    <a th:href="@{/wishlists}" class="back-link">← Tilbage</a>
 </div>
 </body>
 </html>
