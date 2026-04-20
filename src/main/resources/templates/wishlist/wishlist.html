@@ -10,14 +10,19 @@
 
 <a th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del</a>
 
-<div class="liste">
-    <div class="papir">
-        <button class="tilfoej-knap">Tilføj ønske</button>
-    </div>
-    <div th:each="wish : ${wishes}">
-        <a th:href="@{{link}(link=${wish.linkToProduct})}">
-            <p th:text="${wish.productName}"></p>
+    <!-- Dine eksisterende ønskelister -->
+    <div class="wishlist-card" th:each="wish : ${wishes}">
+        <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+            <h3 th:text="${wish.productName}"></h3>
         </a>
+
+        <div class="wishlist-actions">
+            <a class="action-btn edit-btn" th:href="@{/wishlists/{wishlistId}/wishes/{wishID}/edit (wishlistId=${wishlist.id}) (wishID=${wish.id})}">Rediger</a>
+
+            <form th:action="@{/wishlists/{wishlistId}/wishes/{wishID}/delete(wishlistsId=${wishlist.id}, wishID=${wish.id})}" method="post">
+                <button type="submit" class="action-btn delete-btn">Slet</button>
+            </form>
+        </div>
     </div>
 </div>
 

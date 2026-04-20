@@ -37,13 +37,14 @@ public class WishController {
     }
 
     @GetMapping("/{wishID}/edit")
-    public String editWishlist(@PathVariable int wishID, Model model) {
-        model.addAttribute("wishlist", wishService.findWish(wishID));
-        return "wishlist/editWish";
+    public String editWish(@PathVariable int wishlistId, @PathVariable int wishID, Model model) {
+        model.addAttribute("wish", wishService.findWish(wishID));
+        model.addAttribute("wishlist", wishlistId);
+        return "wish/editWish";
     }
 
     @PostMapping("/{wishID}/delete")
-    public String removelist(@PathVariable int wishID) {
+    public String removeWish(@PathVariable int wishID, @PathVariable int wishlistId) {
         wishService.removeWish(wishID);
         return "redirect:/wishlists";
     }

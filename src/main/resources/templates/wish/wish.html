@@ -7,4 +7,74 @@
 <body>
 
 </body>
+</html><!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mine ønskelister</title>
+    <link rel="stylesheet" th:href="@{/navbar.css}">
+    <link rel="stylesheet" th:href="@{stylesheet.css}">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div th:replace="fragments/nav :: navbar"></div>
+
+<div class="page-container">
+
+    <!-- Mine ønskelister -->
+    <section>
+        <h2>Mine ønskelister</h2>
+
+        <div class="wishlist-grid">
+
+            <!-- TOMT KORT MED PLUS -->
+            <a href="/wishlists/create" class="wishlist-card add-card">
+                <span class="plus">+</span>
+                <p>Ny ønskeliste</p>
+            </a>
+
+            <!-- Dine eksisterende ønskelister -->
+            <div class="wishlist-card" th:each="wishlist : ${myWishlists}">
+                <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+                    <h3 th:text="${wishlist.title}"></h3>
+                </a>
+
+                <div class="wishlist-actions">
+                    <a class="action-btn edit-btn" th:href="@{/wishlists/{id}/edit(id=${wishlist.id})}">Rediger</a>
+
+                    <form th:action="@{/wishlists/{id}/delete(id=${wishlist.id})}" method="post">
+                        <button type="submit" class="action-btn delete-btn">Slet</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Delte ønskelister -->
+    <section>
+        <h2>Ønskelister delt med mig</h2>
+
+        <div class="wishlist-grid">
+            <div class="wishlist-card" th:each="wishlist : ${sharedWishlists}">
+                <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+                    <h3 th:text="${wishlist.title}"></h3>
+                </a>
+
+                <div class="wishlist-actions">
+                    <form th:action="@{/wishlists/{id}/share/delete(id=${wishlist.id})}" method="post">
+                        <input type="hidden" name="viewerId" th:value="${session.user.id}">
+                        <input type="hidden" name="source" value="front">
+                        <button type="submit" class="action-btn delete-btn">Fjern</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
 </html>

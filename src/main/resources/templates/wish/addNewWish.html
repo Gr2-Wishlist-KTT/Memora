@@ -15,7 +15,7 @@
 <div class="page-container">
 
     <div class="form-box">
-        <h1>Tilføj ønskeliste</h1>
+        <h1>Tilføj ønske</h1>
 
         <form th:action="@{/wishlists/{wishlistID}/wishes(wishlistID=${wishlistID})}" th:object="${wish}" method="post">
 
@@ -31,7 +31,7 @@
             <button type="submit" class="submit-btn">Tilføj ønske</button>
         </form>
 
-        <a th:href="@{/memora/{wishlistID}(wishlistID=${wishlistID})}">← Tilbage</a>
+        <a th:href="@{/wishlists}" class="back-link">← Tilbage</a>
     </div>
 
 </div>
