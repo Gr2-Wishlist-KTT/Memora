@@ -39,3 +39,13 @@ create table Shared_wishlist(
                                 foreign key (shared_with_user_id) references Profile (id) on delete cascade,
                                 constraint unique_share UNIQUE (wishlist_id, shared_with_user_id)
 );
+
+CREATE TABLE Wish_reservation (
+                                  id INT AUTO_INCREMENT,
+                                  wish_id INT NOT NULL,
+                                  reserved_by_user_id INT NOT NULL,
+                                  PRIMARY KEY (id),
+                                  FOREIGN KEY (wish_id) REFERENCES Wish(id) ON DELETE CASCADE,
+                                  FOREIGN KEY (reserved_by_user_id) REFERENCES Profile(id) ON DELETE CASCADE,
+                                  CONSTRAINT unique_reservation UNIQUE (wish_id)
+);

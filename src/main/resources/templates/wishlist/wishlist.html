@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Ønskeliste</title>
-    <link rel="stylesheet" th:href="@{/stylesheet.css}"></head>
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
+</head>
 <body>
 
 <h1>Min ønskeliste</h1>
@@ -33,10 +34,11 @@
             </form>
         </div>
     </div>
+
 </div>
 
 <div th:if="${canEdit}">
-<a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}" class="plus-knap">+</a>
+    <a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}" class="plus-knap">+</a>
 </div>
 <div>
     <a th:href="@{/wishlists}" class="back-link">← Tilbage</a>
