@@ -82,18 +82,6 @@ void findWish(){
      });
 
     }
-//
-//    @Test
-//    void removeWish2() {
-//
-//        List<Wish> before = wishRepository.getWishes(1);
-//
-//        wishRepository.removeWish(1);
-//
-//        List<Wish> after = wishRepository.getWishes(1);
-//
-//        assertThat(after.size()).isNotEqualTo(before.size());
-//    }
 
     @Test
     void updateWish() {

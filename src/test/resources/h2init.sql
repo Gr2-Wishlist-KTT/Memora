@@ -32,11 +32,31 @@ create table Wish(
                      foreign key (wishlist_id) references Wishlist (id) on delete cascade
 );
 
+create table Shared_wishlist(
+                                id int auto_increment,
+                                wishlist_id int not null,
+                                shared_with_user_id int not null,
+                                primary key(id),
+                                foreign key (wishlist_id) references Wishlist (id) on delete cascade,
+                                foreign key (shared_with_user_id) references Profile (id) on delete cascade,
+                                constraint unique_share UNIQUE (wishlist_id, shared_with_user_id)
+);
+
+CREATE TABLE Wish_reservation (
+                                  id INT AUTO_INCREMENT,
+                                  wish_id INT NOT NULL,
+                                  reserved_by_user_id INT NOT NULL,
+                                  PRIMARY KEY (id),
+                                  FOREIGN KEY (wish_id) REFERENCES Wish(id) ON DELETE CASCADE,
+                                  FOREIGN KEY (reserved_by_user_id) REFERENCES Profile(id) ON DELETE CASCADE,
+                                  CONSTRAINT unique_reservation UNIQUE (wish_id)
+);
+
 
 INSERT INTO Profile (username, password, email) VALUES
                                                  ('anna', 'anna_123', 'anna@test.com'),
-                                                 ('mads', 'mads_321', 'mads@test.com');
-
+                                                 ('mads', 'mads_321', 'mads@test.com'),
+                                                 ('rasmus', 'rasmus_123', 'rasmus@test.com');
 
 INSERT INTO Wishlist (title, owner) VALUES
                                         ('Annas Fødselsdagsliste', 1),
@@ -52,3 +72,13 @@ INSERT INTO Wish (product_name, link, description, quantity, price, wishlist_id)
                                                                                      ('Akrylmaling sæt', 'https://example.com/acrylic-paint', '24 farver', 1, 179.00, 3),
                                                                                      ('Skitsebog A4', NULL, 'Tykt papir, 120 sider', 1, 89.00, 3),
                                                                                      ('Penselsæt', 'https://example.com/brush-set', '10 stk forskellige størrelser', 1, 129.00, 3);
+
+INSERT INTO Shared_wishlist(wishlist_id, shared_with_user_id)
+        VALUES
+            (1, 2),
+            (1, 1);
+
+INSERT INTO Wish_reservation(wish_id, reserved_by_user_id)
+VALUES
+    (1,2),
+    (2,2);
