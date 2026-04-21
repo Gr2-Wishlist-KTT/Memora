@@ -8,21 +8,42 @@
 
 <h1>Min ønskeliste</h1>
 
-<a th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del</a>
+<div>
+    <a class="action-btn edit-btn" th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del ønskeliste</a>
+</div>
 
-<div class="liste">
-    <div class="papir">
-        <button class="tilfoej-knap">Tilføj ønske</button>
-    </div>
-    <div th:each="wish : ${wishes}">
-        <a th:href="@{{link}(link=${wish.linkToProduct})}">
-            <p th:text="${wish.productName}"></p>
+    <!-- Dine eksisterende ønskelister -->
+    <div class="wishlist-card" th:each="wish : ${wishes}">
+        <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
+            <h3 th:text="${wish.productName}"></h3>
         </a>
+
+        <div class="wishlist-actions">
+            <a class="action-btn edit-btn"
+               th:href="@{/wishlists/{wishlistId}/wishes/{wishId}/edit(wishlistId=${wishlist.id}, wishId=${wish.id})}">
+                Rediger
+            </a>
+
+
+            <form th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                  method="post">
+                <button type="submit" class="action-btn delete-btn">Slet</button>
+            </form>
+
+            </form>
+        </div>
     </div>
 </div>
 
 <div th:if="${canEdit}">
 <a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}" class="plus-knap">+</a>
 </div>
+<div>
+    <a th:href="@{/wishlists}" class="back-link">← Tilbage</a>
+</div>
 </body>
 </html>
+
+
+
+
