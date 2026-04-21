@@ -1,7 +1,9 @@
 package com.example.memora.controller;
 
+import com.example.memora.model.User;
 import com.example.memora.model.Wish;
 import com.example.memora.service.WishService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,4 +29,36 @@ public class WishController {
         wishService.saveWishes(wish, wishlistId);
         return "redirect:/wishlists/" + wishlistId;
     }
+
+    @GetMapping("/{wishID}")
+    public String findWish(@PathVariable int wishID, Model model) {
+        model.addAttribute("wish", wishService.findWish(wishID));
+        return "wish/wish";
+    }
+
+    @GetMapping("/{wishID}/edit")
+    public String editWish(@PathVariable int wishlistId, @PathVariable int wishID, Model model) {
+        model.addAttribute("wish", wishService.findWish(wishID));
+        model.addAttribute("wishlist", wishlistId);
+        return "wish/editWish";
+    }
+
+    @PostMapping("/{wishID}/delete")
+    public String removeWish(@PathVariable int wishID, @PathVariable int wishlistId) {
+        wishService.removeWish(wishID);
+        return "redirect:/wishlists/" + wishlistId;
+    }
+    @PostMapping("/{wishID}")
+    public String updateWish(@PathVariable int wishlistId,
+                             @PathVariable int wishID,
+                             @ModelAttribute Wish wish) {
+        wish.setId(wishID);
+
+        wishService.updateWish(wish);
+
+        return "redirect:/wishlists/" + wishlistId;
+    }
 }
+
+
+

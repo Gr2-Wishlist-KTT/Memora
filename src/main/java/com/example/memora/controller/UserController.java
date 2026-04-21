@@ -17,13 +17,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    // CHECK LOGIN (for at kunne komme videre til næste side)
-//    @GetMapping("/{email}")
-//    public String UserLogin(@PathVariable String email, Model model) {
-//        User user = service.findUserByEmail(email);
-//        model.addAttribute("user", user);
-//        return "user";
-//    }
 
     // REGISTER USER
     @GetMapping("/register")
@@ -70,10 +63,36 @@ public class UserController {
     public String editProfile(@ModelAttribute User profile, HttpSession session){
         userService.editProfile(profile);
 
-        session.setAttribute("user", profile);
+        User updatedUser = userService.findUserByEmail(profile.getEmail());
+
+        session.setAttribute("user", updatedUser);
         return "redirect:/wishlists";
 
     }
+
+    @GetMapping("/forgot-password")
+    public String showForgotPassword(){
+        return "auth/forgot-password";
+
+    }
+
+    @PostMapping("/forgot-password")
+    public String forgotPassword (@RequestParam String email,
+                                  @RequestParam String newPassword, Model model){
+
+        User user = userService.findUserByEmail(email);
+
+        if (user == null) {
+            model.addAttribute("EmailNotFound", true);
+            return "auth/forgot-password";
+        }
+        user.setPassword(newPassword);
+        userService.editProfile(user);
+
+        return "redirect:/auth/login";
+    }
+
+
 
     // MANGLER DENNE METOEDE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AT BLIVE IMPLEMENTERET
     @GetMapping("/logout")

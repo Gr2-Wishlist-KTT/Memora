@@ -44,7 +44,11 @@ public class WishlistController {
     }
 
     @GetMapping("/create")
-    public String newWishlist(Model model) {
+    public String newWishlist(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/";
+        }
         model.addAttribute("wishlist", new Wishlist());
         return "wishlist/addNewWishlist";
     }
@@ -58,7 +62,14 @@ public class WishlistController {
 
     @GetMapping("/{wishlistID}")
     public String showWishlist(@PathVariable int wishlistID, Model model, HttpSession session) {
+
         User user = (User) session.getAttribute("user");
+
+
+        if (user == null) {
+            return "redirect:/";
+        }
+
         Wishlist wishlist = wishlistService.getWishlist(wishlistID);
         boolean canEdit = wishlistService.canEdit(user, wishlist);
 
@@ -83,7 +94,13 @@ public class WishlistController {
     }
 
     @GetMapping("/{wishlistID}/edit")
-    public String editWishlist(@PathVariable int wishlistID, Model model) {
+    public String editWishlist(@PathVariable int wishlistID, Model model, HttpSession session) {
+
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/";
+        }
+
         model.addAttribute("wishlist", wishlistService.getWishlist(wishlistID));
         return "wishlist/editWishlist";
     }

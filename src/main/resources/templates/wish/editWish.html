@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Tilføj ønske</title>
+    <title>Rediger ønske</title>
 
     <link rel="stylesheet" th:href="@{/navbar.css}">
     <link rel="stylesheet" th:href="@{/stylesheet.css}">
@@ -10,26 +10,27 @@
 
 <body>
 
+<!-- Navbar -->
 <div th:replace="fragments/nav :: navbar"></div>
 
 <div class="page-container">
 
     <div class="form-box">
-        <h1>Tilføj ønske</h1>
+        <h1>Rediger ønske</h1>
 
-        <form th:action="@{/wishlists/{wishlistID}/wishes(wishlistID=${wishlistID})}"
+        <form th:action="@{/wishlists/{wishlistId}/wishes/{wishID}(wishlistId=${wishlist}, wishID=${wish.id})}"
               th:object="${wish}" method="post" class="wishlist-form">
 
             <label for="productName">Produkt</label>
-            <input id="productName" type="text" th:field="*{productName}" required placeholder="Hvad ønsker du dig?...">
+            <input id="productName" type="text" th:field="*{productName}" required>
 
             <label for="description">Beskrivelse</label>
-            <input id="description" type="text" th:field="*{description}" required placeholder="Beskrivelse...">
+            <input id="description" type="text" th:field="*{description}" required>
 
             <label for="linkToProduct">Link</label>
-            <input id="linkToProduct" type="text" th:field="*{linkToProduct}" required placeholder="Tilføj link til produktet...">
+            <input id="linkToProduct" type="text" th:field="*{linkToProduct}" required>
 
-            <button type="submit" class="submit-btn">Tilføj ønske</button>
+            <button type="submit" class="submit-btn">Opdater ønske</button>
         </form>
 
         <a th:href="@{/wishlists}" class="back-link">← Tilbage</a>
@@ -37,6 +38,12 @@
 
 </div>
 
+
 </body>
 </html>
+
+
+
+
+
 
