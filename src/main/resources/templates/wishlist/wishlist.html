@@ -9,24 +9,24 @@
 
 <h1>Min ønskeliste</h1>
 
-<div>
+<div th:if="${canEdit}">
     <a class="action-btn edit-btn" th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del ønskeliste</a>
 </div>
 
     <!-- Dine eksisterende ønskelister -->
-    <div class="wishlist-card" th:each="wish : ${wishes}">
+    <div class="wishlist-card" th:each="wishview : ${wishViews}">
         <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
-            <h3 th:text="${wish.productName}"></h3>
+            <h3 th:text="${wishview.wish.productName}"></h3>
         </a>
 
         <div class="wishlist-actions">
             <a class="action-btn edit-btn"
-               th:href="@{/wishlists/{wishlistId}/wishes/{wishId}/edit(wishlistId=${wishlist.id}, wishId=${wish.id})}">
+               th:href="@{/wishlists/{wishlistId}/wishes/{wishId}/edit(wishlistId=${wishlist.id}, wishId=${wishview.wish.id})}">
                 Rediger
             </a>
 
 
-            <form th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+            <form th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wishview.wish.id})}"
                   method="post">
                 <button type="submit" class="action-btn delete-btn">Slet</button>
             </form>
