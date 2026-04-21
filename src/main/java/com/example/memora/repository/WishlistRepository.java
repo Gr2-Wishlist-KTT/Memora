@@ -47,7 +47,7 @@ public class WishlistRepository {
 
     }
 
-    // Metode for at kunne retunere ønsker
+
     public Wishlist getWishList(int wishlistID) {
         String sql = """
                 SELECT Wishlist.id, Wishlist.title, Wishlist.owner

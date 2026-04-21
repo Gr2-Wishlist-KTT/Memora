@@ -25,14 +25,17 @@ public class WishController {
     }
 
     @PostMapping
-    public String saveWish(@ModelAttribute Wish wish, @PathVariable int wishlistId) {
+    public String saveWishes(@ModelAttribute Wish wish, @PathVariable int wishlistId) {
         wishService.saveWishes(wish, wishlistId);
         return "redirect:/wishlists/" + wishlistId;
     }
 
-    @GetMapping("/{wishID}")
-    public String findWish(@PathVariable int wishID, Model model) {
-        model.addAttribute("wish", wishService.findWish(wishID));
+    @GetMapping("/{wishId}")
+    public String findWish(@PathVariable int wishId, Model model, @PathVariable int wishlistId) {
+
+         Wish wish = wishService.findWish(wishId);
+        model.addAttribute("wish", wishService.findWish(wishId));
+        model.addAttribute("wishlistId", wishlistId);
         return "wish/wish";
     }
 
@@ -59,6 +62,3 @@ public class WishController {
         return "redirect:/wishlists/" + wishlistId;
     }
 }
-
-
-
