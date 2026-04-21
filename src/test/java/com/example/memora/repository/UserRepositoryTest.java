@@ -44,7 +44,7 @@ class UserRepositoryTest {
     @Test
     void saveUser() {
         User user = new User(
-                3,
+                4,
                 "Lasse",
                 "Lasse_123",
                 "LasseSej@mail.com"

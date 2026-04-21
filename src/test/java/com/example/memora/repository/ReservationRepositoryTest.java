@@ -34,7 +34,6 @@ class ReservationRepositoryTest {
 
     @Test
     void reserve() {
-        // wish_id = 3 findes og er ikke reserveret
         reservationRepository.reserve(4, 3);
 
         boolean result = reservationRepository.isReserved(4);

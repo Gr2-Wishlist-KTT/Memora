@@ -52,9 +52,16 @@ class SharedWishlistRepositoryTest {
 
     @Test
     void existsShare() {
+        boolean exists = sharedWishlistRepository.existsShare(1, 2);
+
+        assertTrue(exists);
     }
 
     @Test
     void deleteShare() {
+        sharedWishlistRepository.deleteShare(1, 2);
+
+        boolean exists = sharedWishlistRepository.existsShare(1, 2);
+        assertFalse(exists);
     }
 }
