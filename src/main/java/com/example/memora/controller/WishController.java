@@ -59,3 +59,6 @@ public class WishController {
         return "redirect:/wishlists/" + wishlistId;
     }
 }
+
+
+
