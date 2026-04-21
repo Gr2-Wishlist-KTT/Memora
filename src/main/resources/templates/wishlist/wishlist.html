@@ -7,7 +7,6 @@
     <link rel="stylesheet" th:href="@{/stylesheet.css}"></head>
 <body>
 
-
 <div th:replace="fragments/nav :: navbar"></div>
 
 <h1>Min ønskeliste</h1>
@@ -18,8 +17,10 @@
 
     <!-- Dine eksisterende ønskelister -->
     <div class="wishlist-card" th:each="wish : ${wishes}">
-        <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
-            <h3 th:text="${wish.productName}"></h3>
+        <a class="wishlist-title"
+            th:href="@{/wishlists/{wishlistId}/wishes/{wishId}(wishlistId=${wishlist.id}, wishId=${wish.id})}">
+        <h3 th:text="${wish.productName}"></h3>
+    </a>
         </a>
 
         <div class="wishlist-actions">
@@ -40,7 +41,10 @@
 </div>
 
 <div th:if="${canEdit}">
-<a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}" class="plus-knap">+</a>
+    <a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}"
+       class="fab-button">
+        +
+    </a>
 </div>
 <div>
     <a th:href="@{/wishlists}" class="back-link">← Tilbage</a>

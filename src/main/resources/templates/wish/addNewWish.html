@@ -32,7 +32,9 @@
             <button type="submit" class="submit-btn">Tilføj ønske</button>
         </form>
 
-        <a th:href="@{/wishlists}" class="back-link">← Tilbage</a>
+        <a th:href="@{/wishlists/{id}(id=${wishlistId})}" class="back-link">
+            ← Tilbage
+        </a>
     </div>
 
 </div>

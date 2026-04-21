@@ -80,7 +80,7 @@ class WishlistControllerTest {
 
         mockMvc.perform(post("/wishlists")
                         .sessionAttr("user", user)
-                        .param("name", "Birthday Wishlist"))
+                        .param("title", "Birthday Wishlist"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/wishlists"));
 
