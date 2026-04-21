@@ -17,13 +17,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    // CHECK LOGIN (for at kunne komme videre til næste side)
-//    @GetMapping("/{email}")
-//    public String UserLogin(@PathVariable String email, Model model) {
-//        User user = service.findUserByEmail(email);
-//        model.addAttribute("user", user);
-//        return "user";
-//    }
 
     // REGISTER USER
     @GetMapping("/register")
