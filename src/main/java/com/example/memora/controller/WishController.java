@@ -31,9 +31,9 @@ public class WishController {
     }
 
     @GetMapping("/{wishID}")
-    public String findWish(@PathVariable int wishID, Model model) {
+    public String findWish(@PathVariable int wishID, Model model, @PathVariable int wishlistId) {
         model.addAttribute("wish", wishService.findWish(wishID));
-        return "wish/wish";
+        return "wish/wish" + wishlistId;
     }
 
     @GetMapping("/{wishID}/edit")
@@ -59,6 +59,3 @@ public class WishController {
         return "redirect:/wishlists/" + wishlistId;
     }
 }
-
-
-
