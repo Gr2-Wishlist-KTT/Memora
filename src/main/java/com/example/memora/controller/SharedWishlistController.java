@@ -21,7 +21,13 @@ public class SharedWishlistController {
     }
 
     @GetMapping()
-    public String addShareWishlist(Model model, @PathVariable int wishlistId) {
+    public String addShareWishlist(Model model, @PathVariable int wishlistId, HttpSession session) {
+
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/";
+        }
+
         model.addAttribute("wishlist", wishlistService.getWishlist(wishlistId));
         model.addAttribute("viewers", sharedWishlistService.findViewersForWishlist(wishlistId));
         return "wishlist/addShareWishlist";
