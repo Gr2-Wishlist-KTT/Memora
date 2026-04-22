@@ -1,70 +1,118 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Ønskeliste</title>
     <link rel="stylesheet" th:href="@{/navbar.css}">
-    <link rel="stylesheet" th:href="@{/stylesheet.css}"></head>
+    <link rel="stylesheet" th:href="@{/stylesheet.css}">
+</head>
+
 <body>
 
 <div th:replace="fragments/nav :: navbar"></div>
 
-<h1>Min ønskeliste</h1>
+<div class="page-container">
 
-<div th:if="${canEdit}">
-    <a class="action-btn edit-btn" th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}">Del
-        ønskeliste</a>
-</div>
+    <!-- Header -->
+    <div class="wishlist-header3">
+        <h1 th:text="${wishlist.title}">Min ønskeliste</h1>
+    </div>
 
-<div class="wishlist-card" th:each="wishview : ${wishViews}">
-    <a class="wishlist-title" th:href="@{/wishlists/{id}(id=${wishlist.id})}">
-        <h3 th:text="${wishview.wish.productName}"></h3>
+    <!-- Wishes -->
+    <div class="wishlist-grid">
+
+        <div class="wishlist-card"
+             th:each="view : ${wishViews}"
+             th:if="${view != null}">
+
+            <!-- Wish link -->
+            <a class="wishlist-title"
+               th:href="@{/wishlists/{wishlistId}/wishes/{wishId}(
+                   wishlistId=${wishlist.id},
+                   wishId=${view.wish.id})}">
+                <h3 th:text="${view.wish.productName}">Produkt</h3>
+            </a>
+
+            <!-- Kun ejeren må redigere -->
+            <div class="wishlist-actions" th:if="${canEdit}">
+
+                <a class="action-btn edit-btn"
+                   th:href="@{/wishlists/{wishlistId}/wishes/{wishId}/edit(
+                       wishlistId=${wishlist.id},
+                       wishId=${view.wish.id})}">
+                    Rediger
+                </a>
+
+                <form th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/delete(
+                        wishlistId=${wishlist.id},
+                        wishId=${view.wish.id})}"
+                      method="post">
+                    <button type="submit"
+                            class="action-btn delete-btn">
+                        Slet
+                    </button>
+                </form>
+
+            </div>
+
+            <!-- Kun delte brugere kan reservere -->
+            <div th:if="${!canEdit}">
+
+                <!-- Ikke reserveret -->
+                <form th:if="${!view.reserved}"
+                      th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/reserve(
+                          wishlistId=${wishlist.id},
+                          wishId=${view.wish.id})}"
+                      method="post">
+                    <button type="submit" class="action-btn reserve-btn">
+                        Reserver
+                    </button>
+                </form>
+
+                <!-- Reserveret af mig -->
+                <form th:if="${view.reservedByMe}"
+                      th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/unreserve(
+              wishlistId=${wishlist.id},
+              wishId=${view.wish.id})}"
+                      method="post">
+                    <button type="submit" class="action-btn reserve-btn reserved">
+                        ✓ Reserveret af dig
+                    </button>
+                </form>
+
+                <!-- Reserveret af anden -->
+                <p class="reserved-other"
+                   th:if="${view.reserved and !view.reservedByMe}">
+                    Allerede reserveret
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Back -->
+    <a th:href="@{/wishlists}" class="back-link back-under">
+        ← Tilbage
     </a>
 
-    <div th:if="${canEdit}" class="wishlist-actions">
-        <a class="action-btn edit-btn"
-           th:href="@{/wishlists/{wishlistId}/wishes/{wishId}/edit(wishlistId=${wishlist.id}, wishId=${wishview.wish.id})}">
-            Rediger
-        </a>
-
-        <form th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wishview.wish.id})}"
-              method="post">
-            <button type="submit" class="action-btn delete-btn">Slet</button>
-        </form>
-    </div>
-
-    <div th:if="${!canEdit}">
-        <!-- Ikke reserveret -->
-        <form th:if="${!wishview.reserved}"
-              th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wishview.wish.id})}"
-              method="post">
-            <button>Reserver</button>
-        </form>
-
-        <!-- Reserveret af mig -->
-        <form th:if="${wishview.reservedByMe}"
-              th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wishview.wish.id})}"
-              method="post">
-            <button>Fjern reservation</button>
-        </form>
-
-        <!-- Reserveret af en anden -->
-        <p th:if="${wishview.reserved and !wishview.reservedByMe}">
-            Reserveret af en anden
-        </p>
-    </div>
 </div>
 
+<!-- Floating buttons kun for ejer -->
 <div th:if="${canEdit}">
-    <a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}"
+    <a th:href="@{/wishlists/{wishlistId}/wishes/new(
+         wishlistId=${wishlist.id})}"
        class="fab-button">
         +
     </a>
+
+    <a th:href="@{/wishlists/{wishlistId}/share(
+         wishlistId=${wishlist.id})}"
+       class="fab-button fab-share">
+        ⤴
+    </a>
 </div>
-<div>
-    <a th:href="@{/wishlists}" class="back-link">← Tilbage</a>
-</div>
+
 </body>
 </html>
-
-
