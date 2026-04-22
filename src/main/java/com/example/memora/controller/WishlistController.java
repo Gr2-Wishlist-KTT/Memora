@@ -73,6 +73,7 @@ public class WishlistController {
         Wishlist wishlist = wishlistService.getWishlist(wishlistID);
         boolean canEdit = wishlistService.canEdit(user, wishlist);
 
+
         List<Wish> wishes = wishService.getWishes(wishlistID);
 
         List<WishView> wishViews = new ArrayList<>();

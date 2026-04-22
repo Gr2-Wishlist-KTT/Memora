@@ -12,15 +12,33 @@
 
 <div th:replace="fragments/nav :: navbar"></div>
 
-<h1 th:text="${wish.productName}"></h1>
+<div class="page-container">
 
-<p th:text="${wish.description}"></p>
+    <div class="page-container">
 
-<p th:text="${wish.linkToProduct}"></p>
+        <div class="wishlist-card wish-detail">
 
-<a th:href="@{/wishlists/{wishlistId}(wishlistId=${wishlistId})}" class="back-link">
-    ← Tilbage
-</a>
+            <h1 th:text="${wish.productName}"></h1>
+
+            <p class="wish-description" th:text="${wish.description}"></p>
+
+            <a class="wish-link"
+               th:href="${wish.linkToProduct}"
+               target="_blank">
+                Se produkt →
+            </a>
+
+        </div>
+
+        <!-- 👇 MOVED OUTSIDE -->
+        <a th:href="@{/wishlists/{wishlistId}(wishlistId=${wishlistId})}"
+           class="back-link back-under">
+            ← Tilbage
+        </a>
+
+    </div>
+
+</div>
 
 </body>
 </html>
