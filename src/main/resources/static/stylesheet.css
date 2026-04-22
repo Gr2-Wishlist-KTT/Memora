@@ -569,3 +569,7 @@ button.action-btn.reserve-btn.reserved:hover {
 .reservation-section {
     margin-top: 10px;
 }
+.reserved-other {
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.4); /* faded text */
+}
