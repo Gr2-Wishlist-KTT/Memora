@@ -31,9 +31,20 @@ class UserRepositoryTest {
     }
 
     @Test
+    void findUserById(){
+        User user = userRepository.findUserById(1);
+
+        assertThat(user).isNotNull();
+        assertThat(user.getUsername()).isEqualTo("anna");
+        assertThat(user.getEmail()).isEqualTo("anna@test.com");
+
+    }
+
+
+    @Test
     void saveUser() {
         User user = new User(
-                3,
+                4,
                 "Lasse",
                 "Lasse_123",
                 "LasseSej@mail.com"
@@ -47,6 +58,20 @@ class UserRepositoryTest {
         assertThat(user.getUsername()).isEqualTo("Lasse");
         assertThat(user.getPassword()).isEqualTo("Lasse_123");
         assertThat(user.getId()).isEqualTo(saved.getId());
+    }
+    @Test
+    void editUser(){
+
+        User anna = userRepository.findUserByEmail("anna@test.com");
+        assertThat(anna.getId()).isEqualTo(1);
+        assertThat(anna.getEmail()).isEqualTo("anna@test.com");
+
+        User newUser = new User(1, "Linse", "12321", "Linse@mail.com");
+        userRepository.editProfile(newUser);
+
+        assertThat(newUser.getId()).isEqualTo(1);
+        assertThat(newUser.getEmail()).isEqualTo("Linse@mail.com");
+
     }
 
 

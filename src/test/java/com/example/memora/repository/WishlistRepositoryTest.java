@@ -10,6 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 
 @SpringBootTest
@@ -64,6 +65,18 @@ class WishlistRepositoryTest {
 
         assertThat(juleØnsker).isNotNull();
         assertThat(juleØnsker.getTitle()).isEqualTo(wishlistRepository.getWishList(1).getTitle());
+    }
+
+    @Test
+    void deleteWishlist() {
+
+       Wishlist list = wishlistRepository.getWishList(1);
+        assertThat(list).isNotNull();
+
+        wishlistRepository.deleteWishlist(1);
+        assertThrows(Exception.class, () -> {wishlistRepository.getWishList(1);
+        });
+
     }
 
 }
