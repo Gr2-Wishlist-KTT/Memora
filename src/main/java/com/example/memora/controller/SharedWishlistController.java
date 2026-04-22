@@ -62,6 +62,7 @@ public class SharedWishlistController {
             return "redirect:/wishlists";
         }
 
-        return "redirect:/wishlists/" + wishlistId + "/share";
+        return "redirect:/wishlists/" + wishlistId + "/share" +
+                "";
     }
 }
