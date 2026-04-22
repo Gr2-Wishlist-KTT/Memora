@@ -17,8 +17,6 @@ public class UserController {
         this.userService = userService;
     }
 
-
-    // REGISTER USER
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("user", new User());
@@ -31,7 +29,6 @@ public class UserController {
         return "redirect:/auth/login";
     }
 
-    // LOGIN
     @GetMapping("/login")
     public String loginPage() {
         return "auth/login";
@@ -55,12 +52,17 @@ public class UserController {
     @GetMapping("/editProfile")
     public String showEditProfile(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            return "redirect:/";
+        }
+
         model.addAttribute("user", user);
         return "auth/editProfile";
     }
 
     @PostMapping("/editProfile")
-    public String editProfile(@ModelAttribute User profile, HttpSession session){
+    public String editProfile(@ModelAttribute User profile, HttpSession session) {
         userService.editProfile(profile);
 
         User updatedUser = userService.findUserByEmail(profile.getEmail());
@@ -71,14 +73,13 @@ public class UserController {
     }
 
     @GetMapping("/forgot-password")
-    public String showForgotPassword(){
+    public String showForgotPassword() {
         return "auth/forgot-password";
-
     }
 
     @PostMapping("/forgot-password")
-    public String forgotPassword (@RequestParam String email,
-                                  @RequestParam String newPassword, Model model){
+    public String forgotPassword(@RequestParam String email,
+                                 @RequestParam String newPassword, Model model) {
 
         User user = userService.findUserByEmail(email);
 
@@ -92,9 +93,6 @@ public class UserController {
         return "redirect:/auth/login";
     }
 
-
-
-    // MANGLER DENNE METOEDE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AT BLIVE IMPLEMENTERET
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

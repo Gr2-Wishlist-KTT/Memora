@@ -62,17 +62,17 @@ public class SharedWishlistService {
         // Find ejer af ønskeliste
         int ownerId = wishlistService.getWishlist(wishlistId).getOwner();
 
-        // Må ikke dele med sig selv
+        // Forsøger at dele med sig selv
         if (ownerId == targetUserId) {
             throw new IllegalArgumentException("Du kan ikke dele en ønskeliste med dig selv.");
         }
 
-        // Må ikke dele samme liste med samme bruger flere gange
+        // Forsøger at dele samme liste med samme bruger flere gange
         if (sharedWishlistRepository.existsShare(wishlistId, targetUserId)) {
             throw new IllegalArgumentException("Listen er allerede delt med denne bruger.");
         }
 
-        // Hvis alt er OK → del listen
+        // Hvis alt er OK
         sharedWishlistRepository.addShare(wishlistId, targetUserId);
     }
 
