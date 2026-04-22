@@ -46,6 +46,26 @@
             </div>
 
         </div>
+        <div th:if="${!canEdit}">
+            <!-- Ikke reserveret -->
+            <form th:if="${!view.reserved}"
+                  th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wishview.wish.id})}"
+                  method="post">
+                <button>Reserver</button>
+            </form>
+
+            <!-- Reserveret af mig -->
+            <form th:if="${wishViews.reservedByMe}"
+                  th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wishview.wish.id})}"
+                  method="post">
+                <button>Fjern reservation</button>
+            </form>
+
+            <!-- Reserveret af en anden -->
+            <p th:if="${wishViews.reserved and !wishview.reservedByMe}">
+                Reserveret af en anden
+            </p>
+        </div>
 
     </div>
 
