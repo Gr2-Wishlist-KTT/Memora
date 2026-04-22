@@ -64,7 +64,7 @@
                           wishlistId=${wishlist.id},
                           wishId=${view.wish.id})}"
                       method="post">
-                    <button type="submit">
+                    <button type="submit" class="action-btn reserve-btn">
                         Reserver
                     </button>
                 </form>
@@ -72,17 +72,18 @@
                 <!-- Reserveret af mig -->
                 <form th:if="${view.reservedByMe}"
                       th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/unreserve(
-                          wishlistId=${wishlist.id},
-                          wishId=${view.wish.id})}"
+              wishlistId=${wishlist.id},
+              wishId=${view.wish.id})}"
                       method="post">
-                    <button type="submit">
-                        Fjern reservation
+                    <button type="submit" class="action-btn reserve-btn reserved">
+                        ✓ Reserveret af dig
                     </button>
                 </form>
 
                 <!-- Reserveret af anden -->
-                <p th:if="${view.reserved and !view.reservedByMe}">
-                    Reserveret af en anden
+                <p class="reserved-other"
+                   th:if="${view.reserved and !view.reservedByMe}">
+                    Allerede reserveret
                 </p>
 
             </div>

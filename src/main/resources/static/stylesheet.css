@@ -101,6 +101,38 @@ h2 {
     cursor: pointer;
     transition: 0.2s;
 }
+/* Reserve button (same base as action-btn) */
+button.action-btn.reserve-btn {
+    width: 100%;
+
+    padding: 10px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    border: 1px solid #4bb5c1;
+
+    background: #e8f7f9;
+    color: #4bb5c1;
+
+    transition: 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+}
+button.action-btn.reserve-btn:hover {
+    background: #d9f2f4;
+}
+button.action-btn.reserve-btn.reserved {
+    background: #fff4e5;
+    color: #e67e22;
+    border: 1px solid #e67e22;
+}
+button.action-btn.reserve-btn.reserved:hover {
+    background: #ffe8cc;
+}
 
 /* Edit button */
 .edit-btn {
@@ -532,4 +564,8 @@ h2 {
     background-color: #ffffff;
     color: #4bb5c1;
     border: 2px solid #4bb5c1;
+}
+/* Container */
+.reservation-section {
+    margin-top: 10px;
 }
