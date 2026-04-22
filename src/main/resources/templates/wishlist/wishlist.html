@@ -15,27 +15,31 @@
 
     <!-- Header -->
     <div class="wishlist-header3">
-        <h1>Min ønskeliste</h1>
-
+        <h1 th:text="${wishlist.title}">Min ønskeliste</h1>
     </div>
 
     <!-- Wishes grid -->
     <div class="wishlist-grid">
 
-        <div class="wishlist-card" th:each="wish : ${wishes}">
+        <div class="wishlist-card" th:each="view : ${wishViews}">
 
             <a class="wishlist-title"
-               th:href="@{/wishlists/{wishlistId}/wishes/{wishId}(wishlistId=${wishlist.id}, wishId=${wish.id})}">
-                <h3 th:text="${wish.productName}"></h3>
+               th:href="@{/wishlists/{wishlistId}/wishes/{wishId}(wishlistId=${wishlist.id}, wishId=${view.wish.id})}">
+
+                <h3 th:text="${view.wish.productName}"></h3>
             </a>
 
             <div class="wishlist-actions">
                 <a class="action-btn edit-btn"
-                   th:href="@{/wishlists/{wishlistId}/wishes/{wishId}/edit(wishlistId=${wishlist.id}, wishId=${wish.id})}">
+                   th:href="@{/wishlists/{wishlistId}/wishes/{wishId}/edit(
+                       wishlistId=${wishlist.id},
+                       wishId=${view.wish.id})}">
                     Rediger
                 </a>
 
-                <form th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                <form th:action="@{/wishlists/{wishlistId}/wishes/{wishId}/delete(
+                        wishlistId=${wishlist.id},
+                        wishId=${view.wish.id})}"
                       method="post">
                     <button type="submit" class="action-btn delete-btn">Slet</button>
                 </form>
@@ -52,13 +56,14 @@
 
 </div>
 
-<!-- Floating add button -->
+<!-- Floating buttons -->
 <div th:if="${canEdit}">
-    <a th:href="@{/wishlists/{wishlistId}/wishes/new (wishlistId=${wishlist.id})}"
+    <a th:href="@{/wishlists/{wishlistId}/wishes/new(wishlistId=${wishlist.id})}"
        class="fab-button">
         +
     </a>
-    <a th:href="@{/wishlists/{wishlistId}/share (wishlistId=${wishlist.id})}"
+
+    <a th:href="@{/wishlists/{wishlistId}/share(wishlistId=${wishlist.id})}"
        class="fab-button fab-share">
         ⤴
     </a>
