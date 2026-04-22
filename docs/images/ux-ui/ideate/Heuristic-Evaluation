@@ -1,0 +1,21 @@
+Heuristic Evaluation
+END POINT - Share wishlist
+
+1 - issue: Du får ikke feedback med det samme, når du deler en liste. Dog, kan du se hvem du har delt den med nedenfor.
+
+1 - Recommendation: Man kunne lave en popup som fortæller at dit ønske er blevet delt.
+
+
+4 - issue: Vores del-knap, når man er inde på ønskelisten, er ikke nem at få øje på med det samme.
+Logoet brugt til knappen signalerer heller ikke direkte, at man gerne vil dele ønsket.
+
+4 - Recommendation: Man kunne centralisere knappen, så den er nemmere at få øje på.
+4 - Recommendation: Man kunne finde et andet logo, som gav et bedre billede af knappens funktion.
+
+7 - issue: vi har keyboard shortcuts til at manurer hurtigt rundt på hjemmesiden. (TAB, ENTER) 
+
+8 - issue: Vi har et meget minimalistisk design, så man ikke bliver forstyrret af alt muligt.
+
+9 - issue: Der er en håndfuld fejlbeskeder, der kommer frem, og kan hjælpe dig i rigtig retning. Men hvis du laver noget helt forkert, kan de have svært ved at opfange dem.
+
+9 - Recommendation: Flere exceptions.
