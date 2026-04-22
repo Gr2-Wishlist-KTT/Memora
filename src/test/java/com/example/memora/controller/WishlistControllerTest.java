@@ -2,10 +2,8 @@ package com.example.memora.controller;
 
 import com.example.memora.model.User;
 import com.example.memora.model.Wishlist;
-import com.example.memora.service.SharedWishlistService;
-import com.example.memora.service.UserService;
-import com.example.memora.service.WishService;
-import com.example.memora.service.WishlistService;
+import com.example.memora.service.*;
+import com.example.memora.service.ReservationService;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +35,9 @@ class WishlistControllerTest {
 
     @MockitoBean
     private UserService userService;
+
+    @MockitoBean
+    private ReservationService reservationService;
 
     @Autowired
     private MockMvc mockMvc;
