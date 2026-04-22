@@ -66,8 +66,11 @@ class WishlistControllerTest {
 
     @Test
     void newWishlist() throws Exception {
+        User user = new User();
+        user.setId(1);
 
-        mockMvc.perform(get("/wishlists/create"))
+        mockMvc.perform(get("/wishlists/create")
+                        .sessionAttr("user", user))
                 .andExpect(status().isOk())
                 .andExpect(view().name("wishlist/addNewWishlist"))
                 .andExpect(model().attributeExists("wishlist"));
@@ -110,7 +113,7 @@ class WishlistControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("wishlist/wishlist"))
                 .andExpect(model().attributeExists("wishlist"))
-                .andExpect(model().attributeExists("wishes"))
+                .andExpect(model().attributeExists("wishViews"))
                 .andExpect(model().attributeExists("canEdit"));
 
         verify(wishService).getWishes(10);
@@ -118,13 +121,16 @@ class WishlistControllerTest {
 
     @Test
     void editWishlist() throws Exception {
+        User user = new User();
+        user.setId(1);
 
         Wishlist wishlist = new Wishlist();
         wishlist.setId(10);
 
         when(wishlistService.getWishlist(10)).thenReturn(wishlist);
 
-        mockMvc.perform(get("/wishlists/10/edit"))
+        mockMvc.perform(get("/wishlists/10/edit")
+                        .sessionAttr("user", user))
                 .andExpect(status().isOk())
                 .andExpect(view().name("wishlist/editWishlist"))
                 .andExpect(model().attributeExists("wishlist"));
